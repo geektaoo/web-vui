@@ -1,11 +1,14 @@
 {
-  "name": "component-ui",
+  "name": "web-vui",
   "version": "0.1.0",
-  "private": true,
+  "description": "基于Vue的UI组件库",
+  "main": "lib/web-vui.umd.min.js",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name web-vui --dest lib packages/index.js"
   },
   "dependencies": {
     "vue": "^2.5.17"
