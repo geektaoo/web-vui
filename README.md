@@ -7,3 +7,16 @@
 ```
 npm install web-vui -S
 ```
+
+## 使用方法
+```
+import Vue from 'vue'
+import Vui from 'web-vui'
+import 'web-vui/lib/web-vui.css'
+
+Vue.use(Vui)
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+```
