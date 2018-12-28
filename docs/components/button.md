@@ -8,9 +8,9 @@
 
   ```vue
    //添加icon
-   <w-button iconName="setting">按钮</w-button>
+   <v-button iconName="setting">按钮</v-button>
    //添加loading
-   <w-button iconName="loading" :isLoading="true">按钮</w-button>
+   <v-button iconName="loading" :isLoading="true">按钮</v-button>
    //添加disable
-   <w-button disabled>按钮</w-button>
+   <v-button disabled>按钮</v-button>
   ```

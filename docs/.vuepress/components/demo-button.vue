@@ -1,8 +1,8 @@
 <template>
     <div>
-        <w-button iconName="setting">按钮</w-button>
-        <w-button iconName="loading" :isLoading="true">按钮</w-button>
-        <w-button disabled>按钮</w-button>
+        <v-button iconName="setting">按钮</v-button>
+        <v-button :isLoading="true">按钮</v-button>
+        <v-button disabled>按钮</v-button>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
   export default {
     name: "demo-button",
     components:{
-      'w-button':Button
+      'v-button':Button
     }
   }
 </script>

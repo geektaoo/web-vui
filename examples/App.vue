@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <w-button></w-button>
-    <button @click="add">点击</button>
+    <v-button>按钮</v-button>
   </div>
 </template>
 

@@ -44,15 +44,17 @@
         }
     }
     $font-size:14px;
+    $font-color:#fff;
     $button-height:32px;
     $borer-radius:4px;
     $border-color:#999;
-    $button-bg: white;
+    $button-bg: #3eaf7c;
     $border-color-hover: #666;
     $button-active-bg: #eee;
     .v-button {
         font-size: $font-size;
         height: $button-height;
+        color:$font-color;
         padding: 0 1em;
         border-radius: $borer-radius;
         border: 1px solid  $border-color;
