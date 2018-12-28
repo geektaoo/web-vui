@@ -1,7 +1,13 @@
-import Button from './button'
+import Button from './button/index'
+import ButtonGroup from './buttonGroup/index'
+import Icon from './icon/index'
+import Input from './input/index'
 
 const components = [
-  Button
+  Button,
+  ButtonGroup,
+  Icon,
+  Input
 ]
 
 const install = function(Vue) {
@@ -17,5 +23,8 @@ if(typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  Button
+  Button,
+  ButtonGroup,
+  Icon,
+  Input
 }

@@ -1,20 +1,20 @@
 <template>
-    <button class="l-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
-        <l-icon class="icon" v-if="iconName && !isLoading" :name="iconName"></l-icon>
-        <l-icon class="icon loading" name="loading" v-if="isLoading"></l-icon>
-        <div class="l-content">
+    <button class="v-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+        <v-icon class="icon" v-if="iconName && !isLoading" :name="iconName"></v-icon>
+        <v-icon class="icon loading" name="loading" v-if="isLoading"></v-icon>
+        <div class="v-content">
             <slot></slot>
         </div>
     </button>
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../../icon/src/icon'
 
   export default {
-    name: 'WButton',
+    name: 'VButton',
     components: {
-      'l-icon': Icon
+      'v-icon': Icon
     },
     props: {
       iconName: {},
@@ -50,7 +50,7 @@
     $button-bg: white;
     $border-color-hover: #666;
     $button-active-bg: #eee;
-    .l-button {
+    .v-button {
         font-size: $font-size;
         height: $button-height;
         padding: 0 1em;
@@ -74,7 +74,7 @@
             outline: none;
         }
 
-        > .l-content {
+        > .v-content {
             order: 2;
         }
         > .icon {
@@ -82,7 +82,7 @@
         }
 
         &.icon-right {
-            > .l-content {
+            > .v-content {
                 order: 1;
             }
             > .icon {
@@ -91,7 +91,7 @@
         }
 
         .loading {
-            animation: rotating 1s infinite linear;
+            animation: rotating 3s infinite linear;
         }
 
     }

@@ -1,5 +1,5 @@
 <template>
-    <svg class="l-icon">
+    <svg class="v-icon">
         <use :xlink:href="`#i-${name}`"></use>
     </svg>
 </template>
@@ -8,13 +8,13 @@
   import './iconfont'
 
   export default {
-    name: 'LuIcon',
+    name: 'VIcon',
     props: ['name']
   }
 </script>
 
 <style lang="scss" scoped>
-    .l-icon {
+    .v-icon {
         width: 1em;
         height: 1em;
     }

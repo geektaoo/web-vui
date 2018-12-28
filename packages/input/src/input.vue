@@ -7,17 +7,17 @@
                @blur="$emit('blur',$event.target.value)"
         >
         <template v-if="error">
-            <l-icon name="error" v-if="error" class="icon-error"></l-icon>
+            <v-icon name="error" v-if="error" class="icon-error"></v-icon>
             <span class="errorMessage">{{error}}</span>
         </template>
     </div>
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../../icon/src/icon'
 
   export default {
-    name: 'LuInput',
+    name: 'VInput',
     props: {
       value: {
         type: String
@@ -35,7 +35,7 @@
       }
     },
     components: {
-      'l-icon': Icon
+      'v-icon': Icon
     }
   }
 </script>

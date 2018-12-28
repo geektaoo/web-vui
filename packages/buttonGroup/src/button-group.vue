@@ -1,17 +1,17 @@
 <template>
-    <div class="l-button-group">
+    <div class="v-button-group">
         <slot></slot>
     </div>
 </template>
 
 <script>
   export default {
-    name: 'LuButtonGroup',
+    name: 'VButtonGroup',
     mounted() {
       for (let node of this.$el.children) {
         let name = node.nodeName.toLowerCase()
         if (name !== 'button') {
-          console.warn(`l-button-group下面的子元素应该是l-button,但是你写的是${name}`)
+          console.warn(`v-button-group下面的子元素应该是v-button,但是你写的是${name}`)
         }
       }
     }
@@ -26,10 +26,10 @@
     $button-bg: white;
     $border-color-hover: #666;
     $button-active-bg: #eee;
-    .l-button-group {
+    .v-button-group {
         display: inline-flex;
         vertical-align: middle;
-        > .l-button {
+        > .v-button {
             border-radius: 0;
             margin-left: -1px;
             &:first-child {

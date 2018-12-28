@@ -22,7 +22,10 @@ module.exports = {
       {
         title:'组件',
         children:[
-          '/components/button'
+          '/components/icon',
+          '/components/button',
+          '/components/buttonGroup',
+          '/components/input'
         ]
       }
     ]
