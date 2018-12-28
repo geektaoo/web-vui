@@ -1,12 +1,12 @@
+import Icon from './icon/index'
 import Button from './button/index'
 import ButtonGroup from './buttonGroup/index'
-import Icon from './icon/index'
 import Input from './input/index'
 
 const components = [
+  Icon,
   Button,
   ButtonGroup,
-  Icon,
   Input
 ]
 
@@ -23,8 +23,8 @@ if(typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
+  Icon,
   Button,
   ButtonGroup,
-  Icon,
   Input
 }

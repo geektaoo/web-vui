@@ -5,7 +5,7 @@
 #### 安装
 
 ```
-npm install web-vui -S
+npm install web-vui
 ```
 
 #### 使用方法

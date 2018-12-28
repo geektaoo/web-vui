@@ -1,6 +1,6 @@
 {
   "name": "web-vui",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "基于Vue的UI组件库",
   "main": "lib/web-vui.umd.min.js",
   "private": false,
