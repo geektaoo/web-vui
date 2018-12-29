@@ -7,6 +7,12 @@
       <v-button>主页</v-button>
       <v-button>下一页</v-button>
     </v-button-group>
+    <br>
+    <v-input  value="张三"></v-input>{{msg}}
+    <v-input :disabled="true" value="张三"></v-input>
+    <v-input value="李四" :readonly="true"></v-input>
+    <v-input error="姓名不能少于两个字" value="张三"></v-input>
+    <v-input :success="true" value="张三"></v-input>
   </div>
 </template>
 
@@ -14,6 +20,11 @@
 
 export default {
   name: 'app',
+  data(){
+    return{
+      msg:''
+    }
+  },
   methods:{
     add:function() {
       alert(1)

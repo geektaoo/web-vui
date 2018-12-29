@@ -7,8 +7,11 @@
                @blur="$emit('blur',$event.target.value)"
         >
         <template v-if="error">
-            <v-icon name="error" v-if="error" class="icon-error"></v-icon>
+            <v-icon name="error" class="icon-error"></v-icon>
             <span class="errorMessage">{{error}}</span>
+        </template>
+        <template v-if="success">
+            <v-icon name="success" class="icon-success"></v-icon>
         </template>
     </div>
 </template>
@@ -32,6 +35,9 @@
       },
       error: {
         type: String
+      },
+      success: {
+        type:Boolean
       }
     },
     components: {
@@ -41,13 +47,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $height: 32px;
-    $border-color: #999;
-    $border-color-hover: #666;
-    $border-radius: 4px;
-    $font-size: 14px;
-    $box-shadow-color: rgba(0, 0, 0, 0.5);
-    $red: #F1453D;
+    @import "../../global";
     .container {
         font-size: $font-size;
         display: inline-flex;
@@ -64,16 +64,22 @@
             padding: 0 8px;
             font-size: inherit;
             &:focus {
-                box-shadow: inset 0 1px 3px $box-shadow-color;
                 outline: none;
+                border-color: $border-color-hover;
             }
             &:hover {
                 border-color: $border-color-hover;
             }
-            &[disabled], &[readonly] {
-                border-color: #bbb;
-                color: #bbb;
+            &[disabled] {
+                border-color: $disabled-border-color;
+                color: $disabled-color;
+                background: $disabled-bg;
                 cursor: not-allowed;
+            }
+            &[readonly] {
+                border-color: $disabled-border-color;
+                color: $disabled-color;
+                background: $disabled-bg;
             }
         }
         &.error {
@@ -83,6 +89,9 @@
         }
         .icon-error {
             fill: $red;
+        }
+        .icon-success {
+            fill:$success;
         }
         .errorMessage {
             color: $red;

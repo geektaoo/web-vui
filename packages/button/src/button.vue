@@ -44,7 +44,7 @@
         height: $button-height;
         color:$font-color;
         padding: 0 1em;
-        border-radius: $borer-radius;
+        border-radius: $border-radius;
         border: 1px solid  $border-color;
         background: $button-bg;
         display: inline-flex;
@@ -88,9 +88,10 @@
 
     }
     .v-button[disabled] {
-        color: #8c8c8c;
-        background: #eee;
-        border: 1px solid #e8e8e8;
+        color: $disabled-color;
+        background: $disabled-bg;
+        border: 1px solid $disabled-border-color;
+        cursor: not-allowed;
         display: inline-flex;
         justify-content: center;
         align-items: center;
