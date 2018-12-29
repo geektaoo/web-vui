@@ -1,7 +1,7 @@
 <template>
     <button class="v-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
-        <v-icon class="icon" v-if="iconName && !isLoading" :name="iconName"></v-icon>
-        <v-icon class="icon loading" name="loading" v-if="isLoading"></v-icon>
+        <v-icon class="v-icon" v-if="iconName && !isLoading" :name="iconName"></v-icon>
+        <v-icon class="v-icon v-loading" name="loading" v-if="isLoading"></v-icon>
         <div class="v-content">
             <slot></slot>
         </div>
@@ -35,23 +35,11 @@
 </script>
 
 <style lang="scss" scoped>
-    @keyframes rotating {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-    $font-size:14px;
-    $font-color:#fff;
-    $button-height:32px;
-    $borer-radius:4px;
-    $border-color:#999;
-    $button-bg: #3eaf7c;
-    $border-color-hover: #666;
-    $button-active-bg: #eee;
+    @import '../../../packages/global';
     .v-button {
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
         font-size: $font-size;
         height: $button-height;
         color:$font-color;
@@ -79,23 +67,62 @@
         > .v-content {
             order: 2;
         }
-        > .icon {
+        > .v-icon {
             order: 1;
+            fill:#fff;
         }
 
         &.icon-right {
             > .v-content {
                 order: 1;
             }
-            > .icon {
+            > .v-icon {
                 order: 2;
+                fill:#fff;
             }
         }
 
-        .loading {
+        .v-loading {
             animation: rotating 3s infinite linear;
         }
 
     }
-
+    .v-button[disabled] {
+        color: #8c8c8c;
+        background: #eee;
+        border: 1px solid #e8e8e8;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .v-button:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform .3s, opacity .5s;
+    }
+    .v-button:active:after {
+        transform: scale(0, 0);
+        opacity: .3;
+        //设置初始状态
+        transition: 0s;
+    }
+    @keyframes rotating {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>

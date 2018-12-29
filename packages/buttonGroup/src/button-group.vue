@@ -19,13 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $font-size:14px;
-    $button-height:32px;
-    $borer-radius:4px;
-    $border-color:#999;
-    $button-bg: white;
-    $border-color-hover: #666;
-    $button-active-bg: #eee;
+    @import '../../../packages/global';
     .v-button-group {
         display: inline-flex;
         vertical-align: middle;

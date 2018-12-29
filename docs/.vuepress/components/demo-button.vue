@@ -1,7 +1,8 @@
 <template>
     <div>
-        <v-button iconName="setting">按钮</v-button>
         <v-button :isLoading="true">按钮</v-button>
+        <v-button iconName="setting">按钮</v-button>
+        <v-button iconName="setting" iconPosition="right">按钮</v-button>
         <v-button disabled>按钮</v-button>
     </div>
 </template>

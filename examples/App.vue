@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <v-button>按钮</v-button>
+    <v-button :isLoading="true">按钮</v-button>
+    <v-icon name="setting"></v-icon>
+    <v-button-group>
+      <v-button>上一页</v-button>
+      <v-button>主页</v-button>
+      <v-button>下一页</v-button>
+    </v-button-group>
   </div>
 </template>
 
