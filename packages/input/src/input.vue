@@ -1,6 +1,7 @@
 <template>
     <div class="container" :class="{'error':error}">
-        <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
+        <input type="text" :placeholder="placeholder"
+               :value="value" :disabled="disabled" :readonly="readonly"
                @change="$emit('change',$event.target.value)"
                @input="$emit('input',$event.target.value)"
                @focus="$emit('focus',$event.target.value)"
@@ -25,6 +26,9 @@
       value: {
         type: String
       },
+      placeholder:{
+        type:String
+      },
       disabled: {
         type: Boolean,
         default: false
@@ -37,7 +41,8 @@
         type: String
       },
       success: {
-        type:Boolean
+        type:Boolean,
+        default:false
       }
     },
     components: {
@@ -59,6 +64,7 @@
         }
         > input {
             height: $height;
+            line-height: normal;
             border: 1px solid $border-color;
             border-radius: $border-radius;
             padding: 0 8px;
@@ -81,6 +87,12 @@
                 color: $disabled-color;
                 background: $disabled-bg;
             }
+        }
+        > input::-ms-input-placeholder {
+            text-align: left;
+        }
+        > input::-webkit-input-placeholder{
+            text-align: left;
         }
         &.error {
             > input {
