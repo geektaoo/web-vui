@@ -1,7 +1,7 @@
 <template>
     <div class="container" :class="{'error':error}">
         <input type="text" :placeholder="placeholder"
-               :value="value" :disabled="disabled" :readonly="readonly"
+               :value="value" :disabled="disabled"
                @change="$emit('change',$event.target.value)"
                @input="$emit('input',$event.target.value)"
                @focus="$emit('focus',$event.target.value)"
@@ -30,10 +30,6 @@
         type:String
       },
       disabled: {
-        type: Boolean,
-        default: false
-      },
-      readonly: {
         type: Boolean,
         default: false
       },
