@@ -10,16 +10,16 @@
     <br>
     <v-input value="张三"></v-input>
     <v-input :disabled="true" value="张三"></v-input>
-    <div style="border: 1px solid black;">
+    <div>
       <v-row gutter="20">
         <v-col>1</v-col>
         <v-col>2</v-col>
       </v-row>
-      <!--<v-row gutter="20">-->
-        <!--<v-col>1</v-col>-->
-        <!--<v-col>2</v-col>-->
-        <!--<v-col>3</v-col>-->
-      <!--</v-row>-->
+      <v-row gutter="20">
+        <v-col>1</v-col>
+        <v-col>2</v-col>
+        <v-col>3</v-col>
+      </v-row>
       <!--<v-row>-->
         <!--<v-col>1</v-col>-->
         <!--<v-col>2</v-col>-->

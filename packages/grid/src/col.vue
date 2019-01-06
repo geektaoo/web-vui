@@ -1,10 +1,6 @@
 <template>
-  <div class="v-col" :class=" [span && `col-${span}`,offset && `offset-${offset}`] "
-       :style="{marginLeft:gutter/2+'px',marginRight:gutter/2+'px'}"
-  >
-    <div style="border: 1px solid white;">
-      <slot></slot>
-    </div>
+  <div class="v-col" :class="colClass" :style="colStyle">
+    <slot></slot>
   </div>
 </template>
 
@@ -22,6 +18,21 @@
     data() {
       return {
         gutter: 0
+      }
+    },
+    computed: {
+      colStyle() {
+        let {gutter} = this
+        return {
+          marginLeft: gutter / 2 + 'px', marginRight: gutter / 2 + 'px'
+        }
+      },
+      colClass() {
+        let {span, offset} = this
+        return [
+          span && `col-${span}`,
+          offset && `offset-${offset}`
+        ]
       }
     }
   }
