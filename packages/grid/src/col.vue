@@ -23,7 +23,7 @@
     computed: {
       colStyle() {
         let {gutter} = this
-        return {
+        return gutter && {
           marginLeft: gutter / 2 + 'px', marginRight: gutter / 2 + 'px'
         }
       },
@@ -40,10 +40,6 @@
 
 <style scoped lang="scss">
   .v-col {
-    width: 50%;
-    height: 100px;
-    border: 1px solid red;
-    background: #3eaf7c;
   }
 
   $class: col-;

@@ -11,33 +11,24 @@
     <v-input value="张三"></v-input>
     <v-input :disabled="true" value="张三"></v-input>
     <div>
-      <v-row gutter="20">
-        <v-col>1</v-col>
-        <v-col>2</v-col>
+      <v-row>
+        <v-col class="col">1</v-col>
+        <v-col class="col">2</v-col>
+        <v-col class="col">3</v-col>
+        <v-col class="col">4</v-col>
       </v-row>
-      <v-row gutter="20">
-        <v-col>1</v-col>
-        <v-col>2</v-col>
-        <v-col>3</v-col>
+      <v-row>
+        <v-col span="2">2</v-col>
+        <v-col span="22">22</v-col>
       </v-row>
-      <!--<v-row>-->
-        <!--<v-col>1</v-col>-->
-        <!--<v-col>2</v-col>-->
-        <!--<v-col>3</v-col>-->
-        <!--<v-col>4</v-col>-->
-      <!--</v-row>-->
-      <!--<v-row>-->
-        <!--<v-col span="2">2</v-col>-->
-        <!--<v-col span="22">22</v-col>-->
-      <!--</v-row>-->
-      <!--<v-row>-->
-        <!--<v-col span="6">6</v-col>-->
-        <!--<v-col span="16" offset="2">18</v-col>-->
-      <!--</v-row>-->
-      <!--<v-row>-->
-        <!--<v-col span="3">6</v-col>-->
-        <!--<v-col span="16" offset="5">18</v-col>-->
-      <!--</v-row>-->
+      <v-row>
+        <v-col class="col" span="6">6</v-col>
+        <v-col class="col" span="16" offset="2">18</v-col>
+      </v-row>
+      <v-row>
+        <v-col class="col" span="3">6</v-col>
+        <v-col class="col" span="16" offset="5">18</v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -66,5 +57,11 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  .col{
+    height: 30px;
+    background: #3eaf7c;
+    border: 1px solid red;
+    width: 50%;
   }
 </style>
