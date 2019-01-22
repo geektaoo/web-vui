@@ -10,11 +10,11 @@
     <br>
     <v-input value="张三"></v-input>
     <v-input :disabled="true" value="张三"></v-input>
-    <div>
+    <div class="box">
       <v-row>
-        <v-col class="col">1</v-col>
-        <v-col class="col">2</v-col>
-        <v-col class="col">3</v-col>
+        <v-col class="col">4</v-col>
+        <v-col class="col">4</v-col>
+        <v-col class="col">4</v-col>
         <v-col class="col">4</v-col>
       </v-row>
       <v-row>
@@ -58,7 +58,11 @@
     color: #2c3e50;
     margin-top: 60px;
   }
+  .box{
+    border: 1px solid blue;
+  }
   .col{
+    box-sizing: border-box;
     height: 30px;
     background: #3eaf7c;
     border: 1px solid red;

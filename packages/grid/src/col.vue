@@ -40,6 +40,7 @@
 
 <style scoped lang="scss">
   .v-col {
+    box-sizing: border-box;
   }
 
   $class: col-;

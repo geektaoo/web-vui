@@ -5,7 +5,7 @@
 使用方法
 
 <ClientOnly>
-   <demo-grid></demo-grid>
+   <Grid-Base></Grid-Base>
 </ClientOnly>
 
 ```vue
@@ -33,7 +33,12 @@
   <v-col span="8" class="col">8</v-col>
 </v-row>
 ```
-##  v-row Attribute
+
+<ClientOnly>
+   <Grid-span></Grid-span>
+</ClientOnly>
+
+ v-row Attribute
 
 |  参数  |       说明       |     类型      | 可选值 | 默认值 |
 | :----: | :--------------: | :-----------: | :----: | :----: |
@@ -41,7 +46,7 @@
 
 
 
-## v-col Attribute
+ v-col Attribute
 
 |  参数  |      说明      |      类型      | 可选值 | 默认值 |
 | :----: | :------------: | :------------: | :----: | :----: |
