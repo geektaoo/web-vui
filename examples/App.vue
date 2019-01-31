@@ -12,14 +12,20 @@
     <v-input :disabled="true" value="张三"></v-input>
     <div class="box">
       <v-row>
-        <v-col class="col">4</v-col>
-        <v-col class="col">4</v-col>
-        <v-col class="col">4</v-col>
-        <v-col class="col">4</v-col>
-      </v-row>
-      <v-row>
-        <v-col span="2">2</v-col>
-        <v-col span="22">22</v-col>
+        <v-col class="col" span="2"
+               :phone="{span:24}"
+               :ipad="{span:8}"
+               :npc="{span:4}"
+               :pc="{span:2}"
+               :wpc="{span:1}"
+        >2</v-col>
+        <v-col class="col" span="22"
+               :phone="{span:24}"
+               :ipad="{span:16}"
+               :npc="{span:20}"
+               :pc="{span:22}"
+               :wpc="{span:23}"
+        >22</v-col>
       </v-row>
       <v-row>
         <v-col class="col" span="6">6</v-col>
