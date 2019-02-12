@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  let validate = (value)=>{
+  let validate = (value) => {
     let keys = Object.keys(value)
     let valid = true
     keys.forEach(key => {
@@ -24,11 +24,11 @@
       offset: {
         type: [Number, String]
       },
-      phone: {type: Object, validate:validate},
-      ipad: {type: Object, validate:validate},
-      npc: {type: Object, validate:validate},
-      pc: {type: Object, validate:validate},
-      wpc: {type: Object, validate:validate},
+      phone: {type: Object, validate: validate},
+      ipad: {type: Object, validate: validate},
+      npc: {type: Object, validate: validate},
+      pc: {type: Object, validate: validate},
+      wpc: {type: Object, validate: validate},
     },
     data() {
       return {
@@ -46,15 +46,15 @@
         )
       },
       colClass() {
-        let {span, offset, phone,ipad,npc,pc,wpc} = this
+        let {span, offset, phone, ipad, npc, pc, wpc} = this
         return [
           span && `col-${span}`,
           offset && `offset-${offset}`,
-          ...[phone && `col-phone-${phone.span}`],
-          ...[ipad && `col-ipad-${ipad.span}`],
-          ...[npc && `col-npc-${npc.span}`],
-          ...[pc && `col-pc-${pc.span}`],
-          ...[wpc && `col-wpc-${wpc.span}`]
+          ...(phone ? [`col-phone-${phone.span}`] : []),
+          ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+          ...(npc ? [`col-npc-${npc.span}`] : []),
+          ...(pc ? [`col-pc-${pc.span}`] : []),
+          ...(wpc ? [`col-wpc-${wpc.span}`] : [])
         ]
       }
     }
