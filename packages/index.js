@@ -2,12 +2,14 @@ import Icon from './icon/index'
 import Button from './button/index'
 import ButtonGroup from './buttonGroup/index'
 import Input from './input/index'
+import Grid from './grid/index'
 
 const components = [
   Icon,
   Button,
   ButtonGroup,
-  Input
+  Input,
+  Grid
 ]
 
 const install = function(Vue) {
@@ -26,5 +28,6 @@ export default {
   Icon,
   Button,
   ButtonGroup,
-  Input
+  Input,
+  Grid
 }
