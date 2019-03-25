@@ -3,11 +3,17 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  Vue.prototype.$toast = function () {
+    console.log("我是toast")
+  }
   export default {
     name: "VToast"
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="sass" scoped>
 
 </style>
+
+

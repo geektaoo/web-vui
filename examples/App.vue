@@ -10,7 +10,7 @@
     <br>
     <v-input value="张三"></v-input>
     <v-input :disabled="true" value="张三"></v-input>
-    <div class="box">
+    <!-- <div class="box">
       <v-row>
         <v-col class="col" span="2"
                :phone="{span:24}"
@@ -35,17 +35,20 @@
         <v-col class="col" span="3">6</v-col>
         <v-col class="col" span="16" offset="5">18</v-col>
       </v-row>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
   export default {
     name: 'app',
-    data() {
+    data () {
       return {
         msg: ''
       }
+    },
+    created () {
+      this.$toast()
     },
     methods: {
       add: function (value) {
@@ -57,21 +60,22 @@
 
 <style>
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-  .box{
-    border: 1px solid blue;
-  }
-  .col{
-    box-sizing: border-box;
-    height: 30px;
-    background: #3eaf7c;
-    border: 1px solid red;
-    width: 50%;
-  }
+  margin-top: 60px;
+  color: #2c3e50;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  text-align: center;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.box {
+  border: 1px solid blue;
+}
+.col {
+  box-sizing: border-box;
+  width: 50%;
+  height: 30px;
+  background: #3eaf7c;
+  border: 1px solid red;
+}
 </style>
