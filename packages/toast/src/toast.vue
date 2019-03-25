@@ -1,12 +1,10 @@
 <template>
-  <div class="v-toast"></div>
+  <div class="v-toast">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-  import Vue from 'vue'
-  Vue.prototype.$toast = function () {
-    console.log("我是toast")
-  }
   export default {
     name: "VToast"
   }
