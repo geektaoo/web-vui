@@ -9,7 +9,7 @@ import Input from '../packages/input/src/input'
 import Col from '../packages/grid/src/col'
 import Row from '../packages/grid/src/row'
 import Toast from '../packages/toast/src/toast'
-import Plugin from '../packages/toast/src/plugin'
+import Index from '../packages/toast/src/index'
 
 
 Vue.component('v-button', Button)
@@ -19,7 +19,7 @@ Vue.component('v-input', Input)
 Vue.component('v-col', Col)
 Vue.component('v-row', Row)
 Vue.component('v-toast', Toast)
-Vue.use(Plugin)
+Vue.use(Index)
 new Vue({
   render: h => h(App)
 }).$mount('#app')
