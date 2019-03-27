@@ -20,7 +20,14 @@
         alert(value)
       },
       showToast () {
-        this.$toast("这是一个toast")
+        this.$toast("这是一个toast这是一个toast这是一个toast这是一个toast这是一个toast这是一个toast",{
+          showClose:{
+            text:'关闭按钮',
+            callback(){
+              console.log('用户说知道了')
+            }
+          }
+        })
       }
     }
   }

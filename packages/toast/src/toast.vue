@@ -25,13 +25,10 @@
         type:Object,
         default(){
           return {
-            text:'关闭',callback:(toast)=>{toast.close()}
+            text:'关闭',callback:undefined
           }
         }
       }
-    },
-    created(){
-      console.log(this.showClose)
     },
     mounted() {
       if (this.autoClose) {
@@ -47,7 +44,9 @@
       },
       onClickClose(){
         this.close()
-        this.showClose.callback()
+        if (this.showClose && typeof this.showClose.callback === 'function'){
+          this.showClose.callback()
+        }
       }
     }
   }
@@ -75,6 +74,13 @@
     font-size: $content-font-size;
     padding: $toast-padding;
     border-radius: $border-radius-middle;
+    .close-btn{
+      margin-left: 16px;
+      padding-left: 8px;
+      cursor: pointer;
+      border-left: 1px solid #fff;
+      flex-shrink: 0;
+    }
   }
 
   .fate-enter-active {
@@ -89,12 +95,6 @@
   .fate-leave-to {
     transform: translateX(10px);
     opacity: 0;
-  }
-  .close-btn{
-    margin-left: 16px;
-    padding-left: 8px;
-    cursor: pointer;
-    border-left: 1px solid #fff;
   }
 </style>
 
