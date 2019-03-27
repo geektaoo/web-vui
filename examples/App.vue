@@ -20,14 +20,14 @@
         alert(value)
       },
       showToast () {
-        this.$toast("这是一个toast",{
+        this.$toast(`这是${parseInt(Math.random()*100)},个toast`,{
           showClose:{
             text:'关闭按钮',
             callback(){
               console.log('用户说知道了')
             }
           },
-          // position:'right'
+          position:'right'
         })
       }
     }
