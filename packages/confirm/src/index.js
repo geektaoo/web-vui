@@ -1,21 +1,20 @@
 import Vue from 'vue'
-import Confirm from './confirm'
+import confirmComponent from './confirm'
 
-const Constructor = Vue.extend(Confirm)
+const Confirm = {}
 
-function createConfirm(options) {
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  let ConfirmInstance = new Constructor({
-    propsData:options
-  })
-  ConfirmInstance.$mount(div)
-  return ConfirmInstance
-}
-export default {
-  install(Vue){
-    Vue.prototype.$confirm = function(options){
-      createConfirm(options)
-    }
+Confirm.install = function (Vue){
+
+  Vue.prototype.$confirm = function(options){
+    const ConfirmInstance = Vue.extend(confirmComponent)
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const vm = new ConfirmInstance({
+      propsData:options
+    })
+    vm.$mount(div)
+    return vm.confirm()
   }
 }
+
+export default Confirm

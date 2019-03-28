@@ -1,11 +1,11 @@
 <template>
-  <div class="v-confirm">
+  <div class="v-confirm" v-if="isShow">
     <div class="confirm-info">
       <div class="confirm-title" v-text="title"></div>
       <div class="confirm-content" v-text="content"></div>
       <div class="confirm-footer">
-        <v-button class="confirm-btn" v-text="confirmText"></v-button>
-        <v-button class="cancle-btn" v-text="cancleText"></v-button>
+        <v-button class="confirm-btn" @click="onClick('confirm')" v-text="confirmText"></v-button>
+        <v-button class="cancle-btn" @click="onClick('cancle')" v-text="cancleText"></v-button>
       </div>
     </div>
   </div>
@@ -18,6 +18,12 @@
     name: 'vConfirm',
     components: {
       vButton
+    },
+    data(){
+      return{
+        promiseStatus:null,
+        isShow:false
+      }
     },
     props:{
       title:{
@@ -35,6 +41,23 @@
       cancleText:{
         type:String,
         default:'取消'
+      }
+    },
+    methods:{
+      confirm(){
+        this.isShow = true
+        return new Promise((resolve, reject) => {
+          this.promiseStatus = { resolve, reject }
+        })
+      },
+      onClick(type){
+        if (type === 'confirm'){
+          this.isShow = false
+          this.promiseStatus && this.promiseStatus.resolve()
+        }else {
+          this.isShow = false
+          this.promiseStatus && this.promiseStatus.reject()
+        }
       }
     }
   }
