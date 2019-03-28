@@ -12,7 +12,7 @@
   import Icon from '../../icon/src/icon'
 
   export default {
-    name: 'VButton',
+    name: 'vButton',
     components: {
       'v-icon': Icon
     },

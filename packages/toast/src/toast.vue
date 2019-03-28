@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'VToast',
+    name: 'vToast',
     props: {
       autoClose: {
         type: Boolean,

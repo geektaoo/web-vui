@@ -8,7 +8,7 @@
   import './iconfont'
 
   export default {
-    name: 'VIcon',
+    name: 'vIcon',
     props: ['name']
   }
 </script>

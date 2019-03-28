@@ -16,7 +16,7 @@
     return valid
   }
   export default {
-    name: "VCol",
+    name: "vCol",
     props: {
       span: {
         type: [Number, String]

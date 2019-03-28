@@ -24,7 +24,7 @@
   import Icon from '../../icon/src/icon'
 
   export default {
-    name: 'VInput',
+    name: 'vInput',
     props: {
       value: {
         type: String

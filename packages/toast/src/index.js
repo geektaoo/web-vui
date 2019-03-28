@@ -1,17 +1,11 @@
 import Vue from 'vue'
 import Toast from './toast'
 
-const ToastConstructor = Vue.extend(Toast)
+const Constructor = Vue.extend(Toast)
 let currentToast
 
-/**
- *
- * @param message
- * @param options
- * @returns {CombinedVueInstance<any & Vue, object, object, object, Record<never, any>>}
- */
 function createToast(message, options) {
-  let ToastInstance = new ToastConstructor({
+  let ToastInstance = new Constructor({
     propsData: options
   })
   ToastInstance.$slots.default = [message]

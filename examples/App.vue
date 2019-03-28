@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <v-button @click="showToast">点我</v-button>
+    <v-button @click="showConfirm">点击</v-button>
   </div>
 </template>
 
@@ -12,13 +13,7 @@
         msg: ''
       }
     },
-    created () {
-
-    },
     methods: {
-      add: function (value) {
-        alert(value)
-      },
       showToast () {
         this.$toast(`这是${parseInt(Math.random()*100)},个toast`,{
           showClose:{
@@ -28,6 +23,14 @@
             }
           },
           position:'right'
+        })
+      },
+      showConfirm(){
+        // console.log(111)
+        this.$confirm({
+          title:'通知',
+          content:'这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息'
+
         })
       }
     }
@@ -43,15 +46,5 @@
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.box {
-  border: 1px solid blue;
-}
-.col {
-  box-sizing: border-box;
-  width: 50%;
-  height: 30px;
-  background: #3eaf7c;
-  border: 1px solid red;
 }
 </style>
