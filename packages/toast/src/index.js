@@ -1,26 +1,27 @@
 import Vue from 'vue'
-import Toast from './toast'
+import toastComponent from './toast'
 
-const Constructor = Vue.extend(Toast)
-let currentToast
+let Toast = {}
 
-function createToast(message, options) {
-  let ToastInstance = new Constructor({
-    propsData: options
-  })
-  ToastInstance.$slots.default = [message]
-  ToastInstance.$mount()
-  document.body.appendChild(ToastInstance.$el)
-  return ToastInstance
-}
+Toast.install = function (Vue){
 
-export default {
-  install(Vue) {
-    Vue.prototype.$toast = function (message, options) {
-      if (currentToast) {
-        currentToast.close()
-      }
-      currentToast = createToast(message, options)
+  Vue.prototype.$toast = function(options){
+    if(document.getElementsByClassName('v-toast').length){
+      // 如果toast还在，则不再执行
+      return;
     }
+    const Constructor = Vue.extend(toastComponent)
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    let vm = new Constructor({
+      propsData: options
+    })
+    vm.$mount(div)
+
+    vm.isShow = true
+    return vm
   }
 }
+
+
+export default Toast

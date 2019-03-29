@@ -1,9 +1,9 @@
 <template>
   <transition name="fate">
-    <div class="v-toast" :class="positionClass">
-      <slot></slot>
+    <div class="v-toast" :class="positionClass" v-if="isShow">
+      <span>{{content}}</span>
       <span class="close-btn" v-if="showClose" @click="onClickClose">
-        {{showClose.text}}
+        {{closeText}}
       </span>
     </div>
   </transition>
@@ -13,13 +13,21 @@
   export default {
     name: 'vToast',
     props: {
+      content:{
+        type:String,
+        default:''
+      },
       autoClose: {
         type: Boolean,
         default: false
       },
       duration: {
         type: Number,
-        default: 4000
+        default: 3000
+      },
+      isShow:{
+        type:Boolean,
+        default:false
       },
       position: {
         type: String,
@@ -28,13 +36,16 @@
           return ['top', 'right', 'left', 'middle'].includes(value)
         }
       },
+      closeText:{
+        type:String,
+        default:'关闭'
+      },
       showClose: {
-        type: Object,
-        default() {
-          return {
-            text: '关闭', callback: undefined
-          }
-        }
+        type: Boolean,
+        default:false
+      },
+      onClose:{
+        type:Function
       }
     },
     computed: {
@@ -51,14 +62,14 @@
     },
     methods: {
       close() {
+        this.isShow = false
         this.$el.remove()
         this.$destroy()
       },
       onClickClose() {
+        this.showClose = false
         this.close()
-        if (this.showClose && typeof this.showClose.callback === 'function') {
-          this.showClose.callback()
-        }
+        this.onClose()
       }
     }
   }
