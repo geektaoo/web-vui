@@ -2,10 +2,11 @@
   <div class="v-confirm" v-if="isShow">
     <div class="confirm-info">
       <div class="confirm-title" v-text="title"></div>
+      <div class="close-btn" @click="onClose"><v-icon  name="error"></v-icon></div>
       <div class="confirm-content" v-text="content"></div>
       <div class="confirm-footer">
-        <v-button class="confirm-btn" @click="onClick('confirm')" v-text="confirmText"></v-button>
-        <v-button class="cancle-btn" @click="onClick('cancle')" v-text="cancleText"></v-button>
+        <v-button class="cancle-btn" @click="onClick('cancle')" v-if="confirmType === 'confirm'">{{cancleText}}</v-button>
+        <v-button class="confirm-btn" @click="onClick('confirm')">{{confirmText}}</v-button>
       </div>
     </div>
   </div>
@@ -13,11 +14,13 @@
 
 <script>
   import vButton from '../../button/src/button'
+  import vIcon from '../../icon/src/icon'
 
   export default {
     name: 'vConfirm',
     components: {
-      vButton
+      vButton,
+      vIcon
     },
     data(){
       return{
@@ -26,6 +29,13 @@
       }
     },
     props:{
+      confirmType:{
+        type:String,
+        default:'confirm',
+        validate(value) {
+          return ['confirm','alert'].includes(value)
+        }
+      },
       title:{
         type:String,
         default:'提示'
@@ -58,6 +68,9 @@
           this.isShow = false
           this.promiseStatus && this.promiseStatus.reject()
         }
+      },
+      onClose(){
+        this.isShow = false
       }
     }
   }
@@ -92,6 +105,15 @@
         margin-bottom: 10px;
         text-align: center;
       }
+      >.close-btn{
+        fill: #eeeeee;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        &:hover{
+          fill: #999999;
+        }
+      }
       >.confirm-content{
         font-size: 14px;
         color: #8c8c8c;
@@ -101,7 +123,7 @@
         display: flex;
         justify-content: flex-end;
         >.confirm-btn{
-          margin-right: 16px;
+          margin-left: 16px;
         }
       }
     }
