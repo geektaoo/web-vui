@@ -1,5 +1,9 @@
 <template>
-  <transition name="fate">
+  <transition name="fate"
+              mode="out-in"
+              @enter="handleEnter"
+              @leave="handleLeave"
+  >
     <div class="v-toast" :class="positionClass" v-if="isShow">
       <span>{{content}}</span>
       <span class="close-btn" v-if="showClose" @click="onClickClose">
@@ -10,12 +14,14 @@
 </template>
 
 <script>
+  import Velocity from 'velocity-animate'
+
   export default {
     name: 'vToast',
     props: {
-      content:{
-        type:String,
-        default:''
+      content: {
+        type: String,
+        default: ''
       },
       autoClose: {
         type: Boolean,
@@ -25,9 +31,9 @@
         type: Number,
         default: 3000
       },
-      isShow:{
-        type:Boolean,
-        default:false
+      isShow: {
+        type: Boolean,
+        default: false
       },
       position: {
         type: String,
@@ -36,16 +42,16 @@
           return ['top', 'right', 'left', 'middle'].includes(value)
         }
       },
-      closeText:{
-        type:String,
-        default:'关闭'
+      closeText: {
+        type: String,
+        default: '关闭'
       },
       showClose: {
         type: Boolean,
-        default:false
+        default: false
       },
-      onClose:{
-        type:Function
+      onClose: {
+        type: Function
       }
     },
     computed: {
@@ -67,9 +73,15 @@
         this.$destroy()
       },
       onClickClose() {
-        this.showClose = false
+        this.isShow = false
         this.close()
         this.onClose()
+      },
+      handleEnter(el, done) {
+        Velocity(el, 'fadeIn', 500, done)
+      },
+      handleLeave(el, done) {
+        Velocity(el, 'reverse', 500, done)
       }
     }
   }
@@ -131,20 +143,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .fate-enter-active {
-    transition: opacity .3s, transform .3s, left .3s, right .3s, top .3s, bottom .3s;
-  }
-
-  .fate-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .fate-enter,
-  .fate-leave-to {
-    transform: translateX(10px);
-    opacity: 0;
   }
 </style>
 
