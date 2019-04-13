@@ -1,0 +1,17 @@
+<template>
+  <div class="v-tabs-content">
+
+  </div>
+</template>
+
+<script>
+export default {
+  name:'vTabsContent'
+}
+</script>
+
+<style lang="scss" scoped>
+.v-tabs-content{
+  
+}
+</style>

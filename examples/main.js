@@ -12,6 +12,7 @@ import Toast from '../packages/toast/src/toast'
 import ToastIndex from '../packages/toast/src/index'
 import Comfirm from '../packages/confirm/src/confirm'
 import ComfirmIndex from '../packages/confirm/src/index'
+import Tabs from '../packages/tabs/index'
 
 
 Vue.component('v-button', Button)
@@ -21,10 +22,11 @@ Vue.component('v-input', Input)
 Vue.component('v-col', Col)
 Vue.component('v-row', Row)
 Vue.component('v-toast', Toast)
-Vue.component('v-comfirm',Comfirm)
+Vue.component('v-comfirm', Comfirm)
 
 Vue.use(ToastIndex)
 Vue.use(ComfirmIndex)
+Vue.use(Tabs)
 
 new Vue({
   render: h => h(App)

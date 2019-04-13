@@ -3,11 +3,7 @@
     <v-button @click="showToast">点我</v-button>
     <v-button @click="showConfirm">点击</v-button>
     <v-button @click="isToggle">切换</v-button>
-    <transition name="fate"
-                mode="out-in"
-    >
-      <h1 v-if="isShow">这是一段动画</h1>
-    </transition>
+    <v-tabs>11111</v-tabs>
   </div>
 </template>
 
