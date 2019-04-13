@@ -1,5 +1,7 @@
 <template>
-  <div class="v-tabs-pane"></div>
+  <div class="v-tabs-pane">
+    <slot></slot>
+  </div>
 </template>
 
 <script>

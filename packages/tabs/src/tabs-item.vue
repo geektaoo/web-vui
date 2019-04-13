@@ -1,10 +1,18 @@
 <template>
-  <div class="v-tabs-item"></div>
+  <div class="v-tabs-item">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
-  name:'vTabsItem'
+  name:'vTabsItem',
+  props:{
+    disabled:{
+      type:Boolean,
+      default:false
+    }
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="v-tabs-content">
-
+    <slot></slot>
   </div>
 </template>
 
