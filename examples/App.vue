@@ -14,7 +14,7 @@
         <v-tabs-body>
           <v-tabs-pane name="society">这是社会的新闻</v-tabs-pane>
           <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>
-          <v-tabs-pane name="finance"></v-tabs-pane>
+          <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>
         </v-tabs-body>
       </v-tabs>
     </div>

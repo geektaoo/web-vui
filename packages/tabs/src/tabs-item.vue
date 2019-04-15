@@ -38,11 +38,13 @@
       classes() {
         return {
           active: this.active,
+          disabled: this.disabled
         }
       }
     },
     methods: {
       Onclick() {
+        if (this.disabled) {return}
         this.eventBus.$emit('update:selected', this.name,this)
       }
     }
@@ -65,6 +67,10 @@
       font-weight: bolder;
       color: $font-tips-color;
       transition: all 0.3s;
+    }
+    &.disabled{
+      color: #c0c4cc;
+      cursor: not-allowed;
     }
   }
 </style>
