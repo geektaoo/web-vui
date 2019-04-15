@@ -3,21 +3,21 @@
     <v-button @click="showToast">点我</v-button>
     <v-button @click="showConfirm">点击</v-button>
     <v-button @click="isToggle">切换</v-button>
-    <v-tabs :selected.sync="selectTab">
-      <v-tabs-nav>
-        <template slot="action">
-          <v-button>设置</v-button>
-        </template>
-        <v-tabs-item name="society">社会</v-tabs-item>
-        <v-tabs-item name="science">科技</v-tabs-item>
-        <v-tabs-item name="finance">财经</v-tabs-item>
-      </v-tabs-nav>
-      <v-tabs-content>
-        <v-tabs-pane name="society">这是社会的新闻</v-tabs-pane>
-        <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>
-        <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>
-      </v-tabs-content>
-    </v-tabs>
+    <hr>
+    <div class="tabs">
+      <v-tabs :selected.sync="selectedName">
+        <v-tabs-nav>
+          <v-tabs-item name="society">社会</v-tabs-item>
+          <v-tabs-item name="science">科技</v-tabs-item>
+          <v-tabs-item name="finance">财经</v-tabs-item>
+        </v-tabs-nav>
+        <v-tabs-body>
+          <v-tabs-pane name="society">这是社会的新闻</v-tabs-pane>
+          <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>
+          <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>
+        </v-tabs-body>
+      </v-tabs>
+    </div>
   </div>
 </template>
 
@@ -27,7 +27,7 @@
     data() {
       return {
         isShow: false,
-        selectTab:''
+        selectedName: 'science'
       }
     },
     methods: {
@@ -73,9 +73,14 @@
     margin-top: 60px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
-    text-align: center;
+    /*text-align: center;*/
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  .tabs{
+    margin: auto;
+    width: 600px;
+    border: 1px solid #ccc;
   }
 </style>

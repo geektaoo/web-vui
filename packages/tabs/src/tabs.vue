@@ -5,31 +5,32 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+
   export default {
     name: 'vTabs',
-    props:{
-      selected:{
-        type:String,
-        required:true
-      },
-      direction:{
-        type:String,
-        default:'horizontal',
-        validate(value){
-          return ['vertical','horizontal'].includes(value)
-        }
+    props: {
+      selected: {
+        type: String,
+        required: true
       }
     },
-    created() {
-      // this.$emit('update:selected',xxx)
+    data() {
+      return {
+        eventBus: new Vue()
+      }
+    },
+    provide() {
+      return {
+        eventBus: this.eventBus
+      }
+    },
+    mounted() {
+      this.eventBus.$emit('update:selected', this.selected)
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .v-tabs {
 
-  }
 </style>
-
-

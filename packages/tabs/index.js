@@ -1,7 +1,7 @@
 import Tabs from './src/tabs'
 import TabsNav from './src/tabs-nav'
 import TabsItem from './src/tabs-item'
-import TabsContent from './src/tabs-content'
+import TabsContent from './src/tabs-body'
 import TabsPane from './src/tabs-pane'
 
 Tabs.install = Vue => {

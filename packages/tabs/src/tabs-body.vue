@@ -1,20 +1,16 @@
 <template>
-  <div class="v-tabs-nav">
+  <div class="v-tabs-body">
     <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'vTabsNav',
+    name: 'vTabsBody',
     inject: ['eventBus']
   }
 </script>
 
 <style lang="scss" scoped>
-  .v-tabs-nav {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
+
 </style>
