@@ -20,7 +20,9 @@
     </div>
     <hr>
     <v-popover>
-      <template slot="content"></template>
+      <template slot="content">
+        这是一条新闻
+      </template>
       <v-button>点击</v-button>
     </v-popover>
   </div>
