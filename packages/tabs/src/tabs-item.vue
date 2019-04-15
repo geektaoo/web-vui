@@ -9,17 +9,21 @@
     name: 'vTabsItem',
     data() {
       return {
-        active: false
+        active: false,
       }
     },
     props: {
       name: {
         type: String | Number,
         required: true
+      },
+      disabled:{
+        type:Boolean,
+        default:false
       }
     },
     inject: ['eventBus'],
-    created() {
+    mounted() {
       if (this.eventBus) {
         this.eventBus.$on('update:selected', (name) => {
           if (name === this.name) {
@@ -33,13 +37,13 @@
     computed: {
       classes() {
         return {
-          active: this.active
+          active: this.active,
         }
       }
     },
     methods: {
       Onclick() {
-        this.eventBus.$emit('update:selected', this.name)
+        this.eventBus.$emit('update:selected', this.name,this)
       }
     }
   }
@@ -51,6 +55,7 @@
   .v-tabs-item {
     padding: 10px 20px;
     cursor: pointer;
+    position: relative;
 
     &:hover {
       color: $font-tips-color;
@@ -58,7 +63,6 @@
 
     &.active {
       font-weight: bolder;
-      background: $tabs-item-active-bg;
       color: $font-tips-color;
       transition: all 0.3s;
     }

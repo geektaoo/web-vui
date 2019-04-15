@@ -26,11 +26,22 @@
       }
     },
     mounted() {
-      this.eventBus.$emit('update:selected', this.selected)
+      this.$children.forEach((vm => {
+        if (vm.$options.name === 'vTabsNav') {
+          vm.$children.forEach((childVm) => {
+            if (childVm.$options.name === 'vTabsItem' && childVm.name === this.selected) {
+              //console.log(item.$el),传递这个元素的name,以及这个元素的实例
+              this.eventBus.$emit('update:selected', this.selected, childVm)
+            }
+          })
+        }
+      }))
     }
   }
 </script>
 
 <style lang="scss" scoped>
+.v-tabs{
 
+}
 </style>

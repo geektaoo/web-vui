@@ -7,14 +7,14 @@
     <div class="tabs">
       <v-tabs :selected.sync="selectedName">
         <v-tabs-nav>
-          <v-tabs-item name="society">社会</v-tabs-item>
+          <v-tabs-item name="society" disabled>社会</v-tabs-item>
           <v-tabs-item name="science">科技</v-tabs-item>
           <v-tabs-item name="finance">财经</v-tabs-item>
         </v-tabs-nav>
         <v-tabs-body>
           <v-tabs-pane name="society">这是社会的新闻</v-tabs-pane>
           <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>
-          <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>
+          <v-tabs-pane name="finance"></v-tabs-pane>
         </v-tabs-body>
       </v-tabs>
     </div>
@@ -82,5 +82,6 @@
     margin: auto;
     width: 600px;
     border: 1px solid #ccc;
+    position: relative;
   }
 </style>

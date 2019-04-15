@@ -42,9 +42,6 @@
 
 <style lang="scss" scoped>
   .v-tabs-pane {
-
-    &.active {
-      background: #3eaf7c;
-    }
+    padding: 10px;
   }
 </style>
