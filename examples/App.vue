@@ -18,6 +18,11 @@
         </v-tabs-body>
       </v-tabs>
     </div>
+    <hr>
+    <v-popover>
+      <template slot="content"></template>
+      <v-button>点击</v-button>
+    </v-popover>
   </div>
 </template>
 
@@ -73,7 +78,7 @@
     margin-top: 60px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
-    /*text-align: center;*/
+    text-align: center;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
