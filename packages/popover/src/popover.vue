@@ -1,5 +1,5 @@
 <template>
-  <div class="v-popover" @click="onClick">
+  <div class="v-popover" @click="onClick" ref="popover">
     <div ref="contentWrapper" class="content-wrapper" v-if="visible"
          :class="{[`position-${position}`]:true}">
       <slot name="content"></slot>
@@ -31,6 +31,7 @@
       popoverPosition() {
         document.body.append(this.$refs.contentWrapper)
         let {left, top, width, height} = this.$refs.triggerWrapper.getBoundingClientRect()
+        let {height: popoverHight} = this.$refs.contentWrapper.getBoundingClientRect()
         if (this.position === 'top') {
           this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
           this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
@@ -38,39 +39,36 @@
           this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
           this.$refs.contentWrapper.style.top = top + height + window.scrollY + 'px'
         } else if (this.position === 'left') {
-          let {height: popoverHight} = this.$refs.contentWrapper.getBoundingClientRect()
           this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
           this.$refs.contentWrapper.style.top = top + (height - popoverHight) / 2 + window.scrollY + 'px'
         } else if (this.position === 'right') {
-          let {height: popoverHight} = this.$refs.contentWrapper.getBoundingClientRect()
           this.$refs.contentWrapper.style.left = left + width + window.scrollX + 'px'
           this.$refs.contentWrapper.style.top = top + (height - popoverHight) / 2 + window.scrollY + 'px'
         }
       },
-      listenToDocument() {
-        let eventHandle = (e) => {
-          if (this.$refs.contentWrapper.contains(e.target)) {
-            //console.log('点击的是popover'),就什么也不做
-            return
-          } else {
-            this.visible = false
-            document.removeEventListener('click', eventHandle)
-          }
+      onClickDocument(e) {
+        if (this.$refs.popover && this.$refs.contentWrapper.contains(e.target)) {
+          return
         }
-        document.addEventListener('click', eventHandle)
+        this.close()
       },
-      openPopover() {
+      open() {
+        this.visible = true
         this.$nextTick(() => {
           this.popoverPosition()
-          this.listenToDocument()
+          document.addEventListener('click', this.onClickDocument)
         })
+      },
+      close() {
+        this.visible = false
+        document.removeEventListener('click', this.onClickDocument)
       },
       onClick(event) {
         if (this.$refs.triggerWrapper.contains(event.target)) {
-          //console.log('点击的是按钮')
-          this.visible = !this.visible
-          if (this.visible) {
-            this.openPopover()
+          if (this.visible === true) {
+            this.close()
+          } else {
+            this.open()
           }
         }
       }

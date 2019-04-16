@@ -31,13 +31,13 @@
     </v-popover>
     <v-popover position="left">
       <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
+        这是一条新闻这是一条新闻这一条新闻这是一条新闻
       </template>
       <v-button>点击</v-button>
     </v-popover>
     <v-popover position="right">
       <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
+        这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻
       </template>
       <v-button>点击</v-button>
     </v-popover>
