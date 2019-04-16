@@ -14,6 +14,7 @@ import Comfirm from '../packages/confirm/src/confirm'
 import ComfirmIndex from '../packages/confirm/src/index'
 import Tabs from '../packages/tabs/index'
 import Popover from '../packages/popover/index'
+import Collapse from '../packages/collapse/index'
 
 
 Vue.component('v-button', Button)
@@ -29,6 +30,7 @@ Vue.use(ToastIndex)
 Vue.use(ComfirmIndex)
 Vue.use(Tabs)
 Vue.use(Popover)
+Vue.use(Collapse)
 
 new Vue({
   render: h => h(App)

@@ -1,118 +1,16 @@
 <template>
   <div id="app">
-<!--    <v-button @click="showToast">点我</v-button>-->
-<!--    <v-button @click="showConfirm">点击</v-button>-->
-<!--    <v-button @click="isToggle">切换</v-button>-->
-<!--    <div class="tabs">-->
-<!--      <v-tabs :selected.sync="selectedName">-->
-<!--        <v-tabs-nav>-->
-<!--          <v-tabs-item name="society" disabled>社会</v-tabs-item>-->
-<!--          <v-tabs-item name="science">科技</v-tabs-item>-->
-<!--          <v-tabs-item name="finance">财经</v-tabs-item>-->
-<!--        </v-tabs-nav>-->
-<!--        <v-tabs-body>-->
-<!--          <v-tabs-pane name="society">这是社会的新闻</v-tabs-pane>-->
-<!--          <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>-->
-<!--          <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>-->
-<!--        </v-tabs-body>-->
-<!--      </v-tabs>-->
-<!--    </div>-->
-    <v-popover position="bottom" trigger="click">
-      <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="top">
-      <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="left">
-      <template slot="content">
-        这是一条新闻这是一条新闻这一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="right">
-      <template slot="content">
-        这是一条新闻这是一条新闻这一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <hr>
-
-
-    <v-popover position="bottom" trigger="hover">
-      <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="top" trigger="hover">
-      <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="left" trigger="hover">
-      <template slot="content">
-        这是一条新闻这是一条新闻这一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
-    <v-popover position="right" trigger="hover">
-      <template slot="content">
-        这是一条新闻这是一条新闻这一条新闻这是一条新闻
-      </template>
-      <v-button>点击</v-button>
-    </v-popover>
+    <v-collapse>
+      <v-collapse-item title="标题1">内容1</v-collapse-item>
+      <v-collapse-item title="标题2">内容2</v-collapse-item>
+      <v-collapse-item title="标题3">内容三</v-collapse-item>
+    </v-collapse>
   </div>
 </template>
 
 <script>
   export default {
     name: 'app',
-    data() {
-      return {
-        isShow: false,
-        selectedName: 'science'
-      }
-    },
-    methods: {
-      showToast() {
-        this.$toast({
-          content: '这是一个toast',
-          autoClose: false,
-          showClose: true,
-          position: 'top',
-          onClose() {
-            console.log('我已经知道他关闭了')
-          }
-        })
-      },
-      showConfirm() {
-        this.$confirm({
-          title: '通知',
-          content: '这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是一段消息这是',
-          confirmType: 'confirm'
-        }).then(() => {
-          this.$toast({
-            content: '成功了',
-            autoClose: true
-          })
-        }).catch(() => {
-          this.$toast({
-            content: '失败了',
-            autoClose: true
-          })
-        })
-      },
-      isToggle() {
-        this.isShow = !this.isShow
-      }
-    }
   }
 </script>
 
@@ -123,8 +21,8 @@
     margin-top: 300px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
-    text-align: center;
-
+    /*text-align: center;*/
+    padding: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
