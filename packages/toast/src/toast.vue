@@ -38,7 +38,7 @@
       position: {
         type: String,
         default: 'top',
-        validate(value) {
+        validator(value) {
           return ['top', 'right', 'left', 'middle'].includes(value)
         }
       },

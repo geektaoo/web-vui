@@ -17,7 +17,7 @@
 <!--        </v-tabs-body>-->
 <!--      </v-tabs>-->
 <!--    </div>-->
-    <v-popover position="bottom">
+    <v-popover position="bottom" trigger="click">
       <template slot="content">
         这是一条新闻这是一条新闻这是一条新闻
       </template>
@@ -37,7 +37,34 @@
     </v-popover>
     <v-popover position="right">
       <template slot="content">
-        这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻这是一条新闻
+        这是一条新闻这是一条新闻这一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <hr>
+
+
+    <v-popover position="bottom" trigger="hover">
+      <template slot="content">
+        这是一条新闻这是一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="top" trigger="hover">
+      <template slot="content">
+        这是一条新闻这是一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="left" trigger="hover">
+      <template slot="content">
+        这是一条新闻这是一条新闻这一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="right" trigger="hover">
+      <template slot="content">
+        这是一条新闻这是一条新闻这一条新闻这是一条新闻
       </template>
       <v-button>点击</v-button>
     </v-popover>

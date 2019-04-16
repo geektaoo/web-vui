@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  let validate = (value) => {
+  let validator = (value) => {
     let keys = Object.keys(value)
     let valid = true
     keys.forEach(key => {
@@ -24,11 +24,11 @@
       offset: {
         type: [Number, String]
       },
-      phone: {type: Object, validate: validate},
-      ipad: {type: Object, validate: validate},
-      npc: {type: Object, validate: validate},
-      pc: {type: Object, validate: validate},
-      wpc: {type: Object, validate: validate},
+      phone: {type: Object, validator: validator},
+      ipad: {type: Object, validator: validator},
+      npc: {type: Object, validator: validator},
+      pc: {type: Object, validator: validator},
+      wpc: {type: Object, validator: validator},
     },
     data() {
       return {

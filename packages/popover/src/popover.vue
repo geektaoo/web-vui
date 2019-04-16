@@ -1,5 +1,5 @@
 <template>
-  <div class="v-popover" @click="onClick" ref="popover">
+  <div class="v-popover" ref="popover">
     <div ref="contentWrapper" class="content-wrapper" v-if="visible"
          :class="{[`position-${position}`]:true}">
       <slot name="content"></slot>
@@ -22,9 +22,32 @@
       position: {
         type: String,
         default: 'top',
-        validate(value) {
+        validator(value) {
           return ['top', 'right', 'bottom', 'left'].includes(value)
         }
+      },
+      trigger: {
+        type: String,
+        default: 'click',
+        validator (value) {
+          return ['click', 'hover'].includes(value)
+        }
+      }
+    },
+    mounted(){
+      if (this.trigger === 'click') {
+        this.$refs.popover.addEventListener('click', this.onClick)
+      } else {
+        this.$refs.popover.addEventListener('mouseenter', this.open)
+        this.$refs.popover.addEventListener('mouseleave', this.close)
+      }
+    },
+    destroyed () {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click', this.onClick)
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open)
+        this.$refs.popover.removeEventListener('mouseleave', this.close)
       }
     },
     methods: {
@@ -47,9 +70,12 @@
         }
       },
       onClickDocument(e) {
-        if (this.$refs.popover && this.$refs.contentWrapper.contains(e.target)) {
-          return
-        }
+        if (this.$refs.popover &&
+          (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))
+        ) { return }
+        if (this.$refs.contentWrapper &&
+          (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains(e.target))
+        ) { return }
         this.close()
       },
       open() {

@@ -42,7 +42,7 @@
       confirmType: {
         type: String,
         default: 'confirm',
-        validate(value) {
+        validator(value) {
           return ['confirm', 'alert'].includes(value)
         }
       },
