@@ -17,9 +17,27 @@
 <!--        </v-tabs-body>-->
 <!--      </v-tabs>-->
 <!--    </div>-->
-    <v-popover>
+    <v-popover position="bottom">
       <template slot="content">
-        这是一条新闻
+        这是一条新闻这是一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="top">
+      <template slot="content">
+        这是一条新闻这是一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="left">
+      <template slot="content">
+        这是一条新闻这是一条新闻这是一条新闻
+      </template>
+      <v-button>点击</v-button>
+    </v-popover>
+    <v-popover position="right">
+      <template slot="content">
+        这是一条新闻这是一条新闻这是一条新闻
       </template>
       <v-button>点击</v-button>
     </v-popover>
@@ -75,7 +93,7 @@
   @import "../packages/global.scss";
 
   #app {
-    margin-top: 60px;
+    margin-top: 300px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     text-align: center;
