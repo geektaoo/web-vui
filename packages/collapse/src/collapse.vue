@@ -5,8 +5,31 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
-    name: 'vCollapse'
+    name: 'vCollapse',
+    data(){
+      return {
+          eventBus:new Vue()
+      }
+    },
+    props:{
+      selected:{
+        type:String
+      },
+      single:{
+        type: Boolean,
+        default:false
+      }
+    },
+    provide(){
+        return {
+          eventBus: this.eventBus
+        }
+    },
+    mounted() {
+      this.eventBus.$emit('update:selected',this.selected)
+    }
   }
 </script>
 
