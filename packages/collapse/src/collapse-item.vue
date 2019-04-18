@@ -27,22 +27,21 @@
     },
     inject: ['eventBus'],
     mounted() {
-      //子元素内部监听事件
-      this.eventBus && this.eventBus.$on('update:selected', (name) => {
-        if (name !== this.name) {
-          this.visible = false
-        }else {
+      this.eventBus.$on('update:selected',(names)=>{
+        // console.log(names,'names')
+        if (names.includes(this.name)){
           this.visible = true
+        }else {
+          this.visible = false
         }
       })
     },
     methods: {
       onClick() {
-        if (this.visible) {
-          this.visible = false
-        } else {
-          //如果visible是false，就发送一个事件，同时子元素内部监听这个事件
-          this.eventBus && this.eventBus.$emit('update:selected', this.name)
+        if (this.visible === true){
+          this.eventBus.$emit('update:removeSelected',this.name)
+        }else{
+          this.eventBus.$emit('update:addSelected',this.name)
         }
       }
     }

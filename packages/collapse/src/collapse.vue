@@ -6,40 +6,48 @@
 
 <script>
   import Vue from 'vue'
+
   export default {
     name: 'vCollapse',
-    data(){
+    data() {
       return {
-          eventBus:new Vue()
+        eventBus: new Vue(),
+        selectedArray:this.selected || []
       }
     },
-    props:{
-      selected:{
-        type:String
+    props: {
+      selected: {
+        type: Array
       },
-      single:{
+      single: {
         type: Boolean,
-        default:false
+        default: false
       }
     },
-    provide(){
-        return {
-          eventBus: this.eventBus
-        }
+    provide() {
+      return {
+        eventBus: this.eventBus
+      }
     },
     mounted() {
-      //内部通知--外部默认值是什么
-      this.eventBus.$emit('update:selected',this.selected)
-      //同时监听子元素的变化，向外通知默认值的变化---.sync使用
-      this.eventBus.$on('update:selected',(name)=>{
-        this.$emit('update:selected',name)
+      if (this.selected) {
+        this.eventBus.$emit('update:selected',this.selectedArray)
+      }
+      this.eventBus.$on('update:removeSelected',(name)=>{
+        let index = this.selectedArray.indexOf(name)
+        this.selectedArray.splice(index,1)
+        this.eventBus.$emit('update:selected',this.selectedArray)
+      })
+      this.eventBus.$on('update:addSelected',(name)=>{
+        this.selectedArray.push(name)
+        this.eventBus.$emit('update:selected',this.selectedArray)
       })
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .v-collapse{
+  .v-collapse {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;

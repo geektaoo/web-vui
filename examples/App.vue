@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-collapse :selected.sync="selectedName">
+    <v-collapse>
       <v-collapse-item title="标题1" name="title1">内容1</v-collapse-item>
       <v-collapse-item title="标题2" name="title2">内容2</v-collapse-item>
       <v-collapse-item title="标题3" name="title3">内容三</v-collapse-item>
@@ -14,7 +14,7 @@
     name: 'app',
     data(){
       return{
-        selectedName:'title1'
+        selectedName:['title1','title2']
       }
     }
   }
