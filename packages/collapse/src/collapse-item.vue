@@ -38,7 +38,7 @@
     methods: {
       onClick() {
         if (this.visible === true) {
-          this.eventBus.$emit('update:removeSelected', this.name)
+          this.eventBus.$emit('update:onRemoveSelected', this.name)
         } else {
           this.eventBus.$emit('update:addSelected', this.name)
         }
