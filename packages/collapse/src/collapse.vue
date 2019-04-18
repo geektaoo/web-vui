@@ -6,13 +6,12 @@
 
 <script>
   import Vue from 'vue'
-
   export default {
     name: 'vCollapse',
     data() {
       return {
         eventBus: new Vue(),
-        selectedArray:this.selected || []
+        selectedArray: this.selected || []
       }
     },
     props: {
@@ -31,16 +30,16 @@
     },
     mounted() {
       if (this.selected) {
-        this.eventBus.$emit('update:selected',this.selectedArray)
+        this.eventBus.$emit('update:selected', this.selectedArray)
       }
-      this.eventBus.$on('update:removeSelected',(name)=>{
+      this.eventBus.$on('update:removeSelected', (name) => {
         let index = this.selectedArray.indexOf(name)
-        this.selectedArray.splice(index,1)
-        this.eventBus.$emit('update:selected',this.selectedArray)
+        this.selectedArray.splice(index, 1)
+        this.eventBus.$emit('update:selected', this.selectedArray)
       })
-      this.eventBus.$on('update:addSelected',(name)=>{
+      this.eventBus.$on('update:addSelected', (name) => {
         this.selectedArray.push(name)
-        this.eventBus.$emit('update:selected',this.selectedArray)
+        this.eventBus.$emit('update:selected', this.selectedArray)
       })
     }
   }

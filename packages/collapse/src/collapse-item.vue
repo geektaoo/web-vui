@@ -27,21 +27,20 @@
     },
     inject: ['eventBus'],
     mounted() {
-      this.eventBus.$on('update:selected',(names)=>{
-        // console.log(names,'names')
-        if (names.includes(this.name)){
+      this.eventBus.$on('update:selected', (names) => {
+        if (names.includes(this.name)) {
           this.visible = true
-        }else {
+        } else {
           this.visible = false
         }
       })
     },
     methods: {
       onClick() {
-        if (this.visible === true){
-          this.eventBus.$emit('update:removeSelected',this.name)
-        }else{
-          this.eventBus.$emit('update:addSelected',this.name)
+        if (this.visible === true) {
+          this.eventBus.$emit('update:removeSelected', this.name)
+        } else {
+          this.eventBus.$emit('update:addSelected', this.name)
         }
       }
     }
