@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import Button from '../../../packages/button/src/button'
+  import Button from '../../../packages/button/index'
   export default {
     name: "demo-button",
     components:{
