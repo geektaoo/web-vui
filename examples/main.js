@@ -3,7 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 import Button from '../packages/button/index'
-import Icon from '../packages/icon/src/icon'
+import Icon from '../packages/icon/index'
 import ButtonGroup from '../packages/buttonGroup/src/button-group'
 import Input from '../packages/input/src/input'
 import Col from '../packages/grid/src/col'
@@ -17,7 +17,6 @@ import Popover from '../packages/popover/index'
 import Collapse from '../packages/collapse/index'
 import Cascader from '../packages/cascader/index'
 
-Vue.component('v-icon', Icon)
 Vue.component('v-button-group', ButtonGroup)
 Vue.component('v-input', Input)
 Vue.component('v-col', Col)
@@ -31,6 +30,7 @@ Vue.use(Tabs)
 Vue.use(Popover)
 Vue.use(Collapse)
 Vue.use(Cascader)
+Vue.use(Icon)
 
 new Vue({
   render: h => h(App)

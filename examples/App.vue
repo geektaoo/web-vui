@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-icon class="red" name="loading" size="size-4x"></v-icon>
   </div>
 </template>
 
@@ -34,5 +35,8 @@
   }
   body{
     border: 1px solid red;
+  }
+  .red{
+    fill:red;
   }
 </style>

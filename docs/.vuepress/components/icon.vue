@@ -1,10 +1,14 @@
 <template>
-  
+  <v-icon></v-icon>
 </template>
 
 <script>
+  import Icon from '../../../packages/icon/src/icon'
   export default {
-    name: 'icon.vue'
+    name: 'icon',
+    components:{
+      'v-icon':Icon
+    }
   }
 </script>
 
