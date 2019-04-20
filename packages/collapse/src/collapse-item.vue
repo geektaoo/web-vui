@@ -1,6 +1,9 @@
 <template>
   <div class="v-collapse-item">
-    <div class="title" @click="onClick">{{title}}</div>
+    <div class="title" @click="onClick">
+      <v-icon :name="iconName" class="icon"></v-icon>
+      <span>{{title}}</span>
+    </div>
     <div class="content" v-if="visible">
       <slot></slot>
     </div>
@@ -8,12 +11,17 @@
 </template>
 
 <script>
+  import Icon from '../../icon/src/icon'
   export default {
     name: 'vCollapseItem',
     data() {
       return {
-        visible: false
+        visible: false,
+        iconName:'right'
       }
+    },
+    components:{
+      'v-icon':Icon
     },
     props: {
       title: {
@@ -21,7 +29,7 @@
         required: true
       },
       name: {
-        type: String,
+        type: String || Number,
         required: true
       }
     },
@@ -29,8 +37,10 @@
     mounted() {
       this.eventBus.$on('update:selected', (names) => {
         if (names.includes(this.name)) {
+          this.iconName = 'down'
           this.visible = true
         } else {
+          this.iconName = 'right'
           this.visible = false
         }
       })
@@ -60,8 +70,11 @@
       min-height: 32px;
       display: flex;
       align-items: center;
-      padding: 0 8px;
+      padding: 10px 8px;
       cursor: pointer;
+      >.icon{
+        padding-right: 4px;
+      }
     }
 
     &:first-child {
