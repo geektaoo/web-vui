@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-icon class="red" name="loading" size="size-4x"></v-icon>
+    <v-icon name="loading" size="size-4x"></v-icon>
   </div>
 </template>
 
