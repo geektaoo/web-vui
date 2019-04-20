@@ -31,6 +31,7 @@ Vue.use(Popover)
 Vue.use(Collapse)
 Vue.use(Cascader)
 Vue.use(Icon)
+Vue.use(Button)
 
 new Vue({
   render: h => h(App)

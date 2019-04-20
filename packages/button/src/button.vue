@@ -1,5 +1,5 @@
 <template>
-  <button class="v-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+  <button class="v-button" :class="classObject" @click="onClick">
     <v-icon class="v-icon" v-if="iconName && !isLoading" :name="iconName"></v-icon>
     <v-icon class="v-icon v-loading" name="loading" v-if="isLoading"></v-icon>
     <div class="v-content">
@@ -17,7 +17,15 @@
       'v-icon': Icon
     },
     props: {
-      iconName: {},
+      iconName: {
+        type: String
+      },
+      size: {
+        type: String,
+        validator(value) {
+          return ['2x', '3x', '4x'].includes(value)
+        }
+      },
       isLoading: {
         type: Boolean,
         default: false
@@ -25,12 +33,24 @@
       iconPosition: {
         type: String,
         default: 'left',
-        validator: function (value) {//属性验证器
-          return !(value !== 'left' && value !== 'right')
+        validator: function (value) {
+          return ['left', 'right'].includes(value)
         }
       }
+    },
+    computed: {
+      classObject() {
+        return [
+          this.size && `size-${this.size}`,
+          `icon-${this.iconPosition}`
+        ]
+      }
+    },
+    methods: {
+      onClick(e) {
+        this.$emit('click', e)
+      }
     }
-
   }
 </script>
 
@@ -53,6 +73,18 @@
     align-items: center;
     vertical-align: middle;
 
+    &.size-2x{
+      font-size: 16px;
+      height: 34px;
+    }
+    &.size-3x{
+      font-size: 18px;
+      height: 36px;
+    }
+    &.size-4x{
+      font-size: 20px;
+      height: 38px;
+    }
     &:hover {
       border-color: $border-color-hover;
     }
@@ -68,6 +100,7 @@
     > .v-content {
       order: 2;
     }
+
     > .v-icon {
       order: 1;
       fill: #fff;
@@ -77,6 +110,7 @@
       > .v-content {
         order: 1;
       }
+
       > .v-icon {
         order: 2;
         fill: #fff;

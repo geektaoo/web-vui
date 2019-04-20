@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <v-icon name="loading" size="size-4x"></v-icon>
+    <v-button class="button" size="2x">按钮</v-button>
+    <v-button class="button" size="3x">按钮</v-button>
+    <v-button class="button" size="4x">按钮</v-button>
+    <v-button class="button" >按钮</v-button>
   </div>
 </template>
 
@@ -37,6 +40,9 @@
     border: 1px solid red;
   }
   .red{
-    fill:red;
+    background: indianred;
+  }
+  .button{
+    margin: 10px 20px;
   }
 </style>
