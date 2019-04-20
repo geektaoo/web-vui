@@ -1,6 +1,6 @@
 <template>
   <button class="v-button" :class="classObject" @click="onClick">
-    <v-icon class="v-icon" v-if="iconName && !isLoading" :name="iconName"></v-icon>
+    <v-icon class="v-icon" v-if="icon && !isLoading" :name="icon"></v-icon>
     <v-icon class="v-icon v-loading" name="loading" v-if="isLoading"></v-icon>
     <div class="v-content">
       <slot></slot>
@@ -17,7 +17,7 @@
       'v-icon': Icon
     },
     props: {
-      iconName: {
+      icon: {
         type: String
       },
       size: {
@@ -30,7 +30,7 @@
         type: Boolean,
         default: false
       },
-      iconPosition: {
+      position: {
         type: String,
         default: 'left',
         validator: function (value) {
@@ -42,7 +42,7 @@
       classObject() {
         return [
           this.size && `size-${this.size}`,
-          `icon-${this.iconPosition}`
+          `icon-${this.position}`
         ]
       }
     },
@@ -73,18 +73,21 @@
     align-items: center;
     vertical-align: middle;
 
-    &.size-2x{
+    &.size-2x {
       font-size: 16px;
       height: 34px;
     }
-    &.size-3x{
+
+    &.size-3x {
       font-size: 18px;
       height: 36px;
     }
-    &.size-4x{
+
+    &.size-4x {
       font-size: 20px;
       height: 38px;
     }
+
     &:hover {
       border-color: $border-color-hover;
     }

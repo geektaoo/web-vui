@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <v-button class="button" size="2x">按钮</v-button>
+    <v-button class="button" size="2x" disabled=true>按钮</v-button>
     <v-button class="button" size="3x">按钮</v-button>
     <v-button class="button" size="4x">按钮</v-button>
-    <v-button class="button" >按钮</v-button>
+    <v-button class="button" position="right" icon="setting">按钮</v-button>
+    <v-button isLoading></v-button>
   </div>
 </template>
 
