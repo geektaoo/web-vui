@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <v-collapse :selected="selectedNmae">
-      <v-collapse-item title="美女" name="title4">这是美女的新闻</v-collapse-item>
-      <v-collapse-item title="社会" name="title5">这是社会的新闻</v-collapse-item>
-      <v-collapse-item title="颜色" name="title6">这是一群颜色的集合</v-collapse-item>
-    </v-collapse>
+    <v-button @click="onClick">点击</v-button>
   </div>
 </template>
 
@@ -16,6 +12,22 @@
         selectedNmae:['title4','title5']
       }
     },
+    methods:{
+      onClick(){
+        this.$confirm({
+          confirmType:'alert',
+          title:'通知',
+          content:'刘亦菲回归影坛，加盟王力宏自导自演的电影《恋爱通告》',
+          confirmText:'知道了',
+          cancleText:'不想知道'
+        }).then(()=>{
+          console.log("点击了知道了")
+        })
+          .catch(()=>{
+            console.log("点击了不知道")
+          })
+      }
+    }
   }
 </script>
 
