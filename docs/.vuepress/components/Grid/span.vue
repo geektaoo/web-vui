@@ -23,6 +23,7 @@
 <style scoped>
   .box {
     background: #eee;
+    margin: 10px;
   }
 
   .col {

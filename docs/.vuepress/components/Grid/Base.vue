@@ -26,6 +26,7 @@
     /*width: 100%;*/
     background: #eee;
     /*box-sizing: border-box;*/
+    margin: 10px;
   }
 
   .col:nth-child(odd) {
