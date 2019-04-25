@@ -88,7 +88,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../global";
+  @import "../../var";
 
   $content-font-size: 14px;
   $close-btn-size: 10px;

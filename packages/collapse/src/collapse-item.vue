@@ -58,7 +58,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../global";
+  @import "../../var";
 
   .v-collapse-item {
 

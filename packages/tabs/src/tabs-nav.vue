@@ -24,7 +24,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../global";
+  @import "../../var";
   .v-tabs-nav {
     display: flex;
     justify-content: flex-start;

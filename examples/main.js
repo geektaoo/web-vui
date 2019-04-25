@@ -10,7 +10,6 @@ import Col from '../packages/grid/src/col'
 import Row from '../packages/grid/src/row'
 import Toast from '../packages/toast/src/toast'
 import ToastIndex from '../packages/toast/src/index'
-// import Comfirm from '../packages/confirm/src/confirm'
 import Comfirm from '../packages/confirm/src/index'
 import Tabs from '../packages/tabs/index'
 import Popover from '../packages/popover/index'
@@ -22,7 +21,6 @@ Vue.component('v-input', Input)
 Vue.component('v-col', Col)
 Vue.component('v-row', Row)
 Vue.component('v-toast', Toast)
-// Vue.component('v-comfirm', Comfirm)
 
 Vue.use(ToastIndex,Button)
 Vue.use(Comfirm)

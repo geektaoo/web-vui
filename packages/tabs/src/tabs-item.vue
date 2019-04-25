@@ -52,7 +52,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../global";
+  @import "../../var";
 
   .v-tabs-item {
     padding: 10px 20px;

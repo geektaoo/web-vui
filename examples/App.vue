@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <v-button @click="onClick">点击</v-button>
+    <v-cascader></v-cascader>
   </div>
 </template>
 
@@ -32,7 +33,7 @@
 </script>
 
 <style>
-  @import "../packages/global.scss";
+  @import "../packages/var.scss";
 
   #app {
     margin-top: 300px;

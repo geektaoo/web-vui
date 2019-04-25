@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../packages/global';
+  @import '../../var';
 
   .v-button-group {
     display: inline-flex;
