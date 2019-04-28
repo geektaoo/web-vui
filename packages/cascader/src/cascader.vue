@@ -89,7 +89,7 @@
       position: absolute;
       top: 100%;
       left: 0;
-      margin-top: 2px;
+      /*margin-top: 2px;*/
       background: #fff;
       border: 1px solid rgba(0, 0, 0, .15);
       border-radius: $border-radius;
