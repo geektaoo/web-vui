@@ -5,7 +5,7 @@
       <v-icon name="down" class="v-icon"></v-icon>
     </div>
     <div class="popover" v-if="popoverVisible">
-      <v-cascader-items :source="source"></v-cascader-items>
+      <v-cascader-items :source="source" :selected="selected" @update:selected="onUpdateSelected"></v-cascader-items>
     </div>
   </div>
 </template>
@@ -25,11 +25,18 @@
     props: {
       source: {
         type: Array
+      },
+      selected: {
+        type: Array,
+        default: () => []
       }
     },
     methods: {
       onClick() {
         this.popoverVisible = !this.popoverVisible
+      },
+      onUpdateSelected(newSelected){
+        this.$emit('update:selected',newSelected)
       }
     }
   }
@@ -78,7 +85,7 @@
       margin-top: 2px;
       background: #fff;
       border: 1px solid rgba(0, 0, 0, .15);
-      border-radius:$border-radius;
+      border-radius: $border-radius;
       box-shadow: $box-shadow;
     }
   }
