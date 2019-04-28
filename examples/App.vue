@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <v-cascader :source="source"></v-cascader>
+    <v-cascader :source="source" :selected="selected"
+                @update:selected="selected = $event"></v-cascader>
     <p>11111111111111</p>
   </div>
 </template>
@@ -115,7 +116,8 @@
             value:'tianjin',
             label:'天津'
           }
-        ]
+        ],
+        selected:[]
       }
     },
     methods: {
