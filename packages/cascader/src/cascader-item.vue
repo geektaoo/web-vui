@@ -7,7 +7,11 @@
       </div>
     </div>
     <div class="children-wrapper" v-if="rightItems">
-      <v-cascader-item :source="rightItems"></v-cascader-item>
+      <v-cascader-item :source="rightItems"
+                       :selected="selected"
+                       :level="level+1"
+                       @update:selected="onUpdateSelected"
+      ></v-cascader-item>
     </div>
   </div>
 </template>
@@ -20,17 +24,21 @@
     props: {
       source: {
         type: Array
-      }
-    },
-    data() {
-      return {
-        leftSelected: null
+      },
+      selected:{
+        type:Array,
+        default:()=>[]
+      },
+      level:{
+        type:Number,
+        default:0
       }
     },
     computed: {
       rightItems() {
-        if (this.leftSelected && this.leftSelected.children) {
-          return this.leftSelected.children
+        let currentSelected = this.selected[this.level]
+        if (currentSelected && currentSelected.children) {
+          return currentSelected.children
         } else {
           return null
         }
@@ -38,7 +46,13 @@
     },
     methods: {
       onClick(item) {
-        this.leftSelected = item
+        let copy = JSON.parse(JSON.stringify(this.selected))
+        copy[this.level] = item
+        copy.splice(this.level+1)
+        this.$emit('update:selected',copy)
+      },
+      onUpdateSelected(newSelected){
+        this.$emit('update:selected',newSelected)
       }
     }
   }
@@ -55,6 +69,7 @@
   > .item-wrapper{
     height: 100%;
     padding: 0.3em 0;
+    cursor: pointer;
 
     > .v-label{
       padding: 0.3em  1em;

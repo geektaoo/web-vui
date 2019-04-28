@@ -65,7 +65,7 @@
 
       > .value {
         height: $height;
-        padding: 5px;
+        padding: 0 1em;
         border: 1px solid rgba(0, 0, 0, .15);
         border-radius: $border-radius;
         font-size: $font-size;
