@@ -56,11 +56,9 @@
     },
     methods: {
       onClick(item) {
-        console.log(item,'item')
         let copy = JSON.parse(JSON.stringify(this.selected))
         copy[this.level] = item
         copy.splice(this.level + 1)
-        console.log(this.selected,'selected')
         this.$emit('update:selected', copy)
       },
       onUpdateSelected(newSelected) {
@@ -89,12 +87,17 @@
       height: 100%;
       margin: 0.3em 0;
       cursor: pointer;
+      overflow: auto;
 
       > .v-label {
         padding: 0.3em 1em;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
+        &:hover{
+          color: #3eaf7c;
+        }
 
         &.active {
           background: #f5f5f5;

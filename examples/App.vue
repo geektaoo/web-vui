@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <v-cascader :source="source" :selected="selected"
-                @update:selected="selected = $event"></v-cascader>
+    <v-cascader :source="source" :selected.sync="selected"></v-cascader>
     <p>11111111111111</p>
   </div>
 </template>

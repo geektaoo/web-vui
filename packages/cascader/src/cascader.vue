@@ -1,5 +1,5 @@
 <template>
-  <div class="v-cascader">
+  <div class="v-cascader" ref="cascader">
     <div class="selected" @click="onClick">
       <div class="value">{{result}}</div>
       <v-icon name="down" class="v-icon"></v-icon>
@@ -31,17 +31,39 @@
         default: () => []
       }
     },
-    computed:{
-      result(){
-        return this.selected.map(item=>item.label).join(' / ')
+    computed: {
+      result() {
+        return this.selected.map(item => item.label).join(' / ')
       }
     },
     methods: {
       onClick() {
-        this.popoverVisible = !this.popoverVisible
+        if (this.popoverVisible === true) {
+          this.close()
+        } else {
+          this.open()
+        }
       },
-      onUpdateSelected(newSelected){
-        this.$emit('update:selected',newSelected)
+      onUpdateSelected(newSelected) {
+        this.$emit('update:selected', newSelected)
+      },
+      onClickDocument(e) {
+        let {cascader} = this.$refs
+        let {target} = e
+        if (cascader === target || cascader.contains(target)) {
+          return
+        }
+        this.close()
+      },
+      open() {
+        this.popoverVisible = true
+        this.$nextTick(() => {
+          document.addEventListener('click', this.onClickDocument)
+        })
+      },
+      close() {
+        this.popoverVisible = false
+        document.removeEventListener('click', this.onClickDocument)
       }
     }
   }
