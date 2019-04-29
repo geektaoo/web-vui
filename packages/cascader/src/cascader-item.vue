@@ -67,7 +67,7 @@
       activeSelected(item) {
         if (this.selected[this.level] && item.label === this.selected[this.level].label) {
           return true
-        }else {
+        } else {
           return false
         }
       }
@@ -95,7 +95,7 @@
         justify-content: flex-start;
         align-items: center;
 
-        &:hover{
+        &:hover {
           color: #3eaf7c;
         }
 
@@ -116,7 +116,7 @@
           transform: scale(0.8);
           fill: rgba(0, 0, 0, 0.45);
 
-          &.active{
+          &.active {
             fill: #3eaf7c;
           }
         }

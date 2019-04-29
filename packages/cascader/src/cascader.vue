@@ -2,12 +2,20 @@
   <div class="v-cascader" ref="cascader">
     <div class="selected" @click="onClick">
       <div class="value">{{result}}</div>
-      <div class="icon-wrapper">
-        <v-icon name="down" class="v-icon" :class="{rotate:popoverVisible}"></v-icon>
+      <div class="icon-wrapper" @click.stop="clearSelected">
+        <v-icon name="down"
+                class="icon-down"
+                :class="{rotate:popoverVisible}"
+                v-if="!selected.length"
+        ></v-icon>
+        <v-icon ref="iconClose" class="icon-close" name="close" v-if="selected.length"></v-icon>
       </div>
     </div>
     <div class="popover" v-if="popoverVisible">
-      <v-cascader-items :source="source" :selected="selected" @update:selected="onUpdateSelected"></v-cascader-items>
+      <v-cascader-items :source="source"
+                        :selected="selected"
+                        @update:selected="onUpdateSelected"
+      ></v-cascader-items>
     </div>
   </div>
 </template>
@@ -49,23 +57,31 @@
       onUpdateSelected(newSelected) {
         this.$emit('update:selected', newSelected)
       },
+      clearSelected() {
+        this.$emit('update:selected', [])
+        this.close()
+      },
       onClickDocument(e) {
-        let {cascader} = this.$refs
+        let {cascader, iconClose} = this.$refs
         let {target} = e
         if (cascader === target || cascader.contains(target)) {
-          return
+          if (iconClose && iconClose.$el === target) {
+            this.clearSelected()
+          } else {
+            return
+          }
         }
         this.close()
       },
       open() {
-        this.popoverVisible = true
         this.$nextTick(() => {
           document.addEventListener('click', this.onClickDocument)
         })
+        this.popoverVisible = true
       },
       close() {
-        this.popoverVisible = false
         document.removeEventListener('click', this.onClickDocument)
+        this.popoverVisible = false
       }
     }
   }
@@ -103,7 +119,7 @@
         top: 50%;
         transform: translateY(-50%);
 
-        > .v-icon {
+        > .icon-down {
           transition: all 0.3s;
           width: 14px;
           height: 14px;
@@ -112,6 +128,16 @@
           &.rotate {
             transform: rotate(180deg);
             transition: all 0.3s;
+          }
+        }
+
+        > .icon-close {
+          width: 16px;
+          height: 16px;
+          fill: rgba(0, 0, 0, 0.8);
+
+          &:hover {
+            fill: #000;
           }
         }
       }
@@ -126,6 +152,7 @@
       border: 1px solid rgba(0, 0, 0, .15);
       border-radius: $border-radius;
       box-shadow: $box-shadow;
+      z-index: 1;
     }
   }
 </style>
