@@ -2,7 +2,9 @@
   <div class="v-cascader" ref="cascader">
     <div class="selected" @click="onClick">
       <div class="value">{{result}}</div>
-      <v-icon name="down" class="v-icon"></v-icon>
+      <div class="icon-wrapper">
+        <v-icon name="down" class="v-icon" :class="{rotate:popoverVisible}"></v-icon>
+      </div>
     </div>
     <div class="popover" v-if="popoverVisible">
       <v-cascader-items :source="source" :selected="selected" @update:selected="onUpdateSelected"></v-cascader-items>
@@ -95,15 +97,23 @@
         align-items: center;
       }
 
-      > .v-icon {
+      > .icon-wrapper {
         position: absolute;
         right: 5px;
         top: 50%;
         transform: translateY(-50%);
-        transition: all 0.3s;
-        width: 14px;
-        height: 14px;
-        color: $cascader-icon-color;
+
+        > .v-icon {
+          transition: all 0.3s;
+          width: 14px;
+          height: 14px;
+          color: $cascader-icon-color;
+
+          &.rotate {
+            transform: rotate(180deg);
+            transition: all 0.3s;
+          }
+        }
       }
     }
 
