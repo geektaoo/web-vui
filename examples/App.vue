@@ -1,7 +1,17 @@
 <template>
   <div id="app">
-    <v-cascader :source="source" :selected.sync="selected"></v-cascader>
-    <p>11111111111111</p>
+<!--    <v-cascader :source="source" :selected.sync="selected"></v-cascader>-->
+    <v-slides>
+      <v-slides-item>
+        <div class="box">1</div>
+      </v-slides-item>
+      <v-slides-item>
+        <div class="box">2</div>
+      </v-slides-item>
+      <v-slides-item>
+        <div class="box">3</div>
+      </v-slides-item>
+    </v-slides>
   </div>
 </template>
 
@@ -120,20 +130,6 @@
       }
     },
     methods: {
-      onClick() {
-        this.$confirm({
-          confirmType: 'alert',
-          title: '通知',
-          content: '刘亦菲回归影坛，加盟王力宏自导自演的电影《恋爱通告》',
-          confirmText: '知道了',
-          cancleText: '不想知道'
-        }).then(() => {
-          console.log('点击了知道了')
-        })
-          .catch(() => {
-            console.log('点击了不知道')
-          })
-      }
     }
   }
 </script>
@@ -145,19 +141,20 @@
     margin-top: 30px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  body {
-  }
-
-  .red {
-    background: indianred;
-  }
-
-  .button {
-    margin: 10px 20px;
+  .box{
+    width: 200px;
+    height: 150px;
+    background: #dfe2e5;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
   }
 </style>
