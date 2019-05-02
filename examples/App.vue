@@ -129,7 +129,7 @@
             label: '天津'
           }
         ],
-        selected: '1'
+        selected: undefined
       }
     },
     created() {

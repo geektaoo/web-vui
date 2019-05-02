@@ -2,11 +2,11 @@
   <div class="v-slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <div class="v-slides-window">
       <div class="v-slides-wrapper">
-        <div class="v-slides-next">
-          <v-icon name="right"></v-icon>
+        <div class="v-slides-next" @click="nextSlide">
+          <v-icon name="right" size="size-2x"></v-icon>
         </div>
-        <div class="v-slides-pre">
-          <v-icon name="left"></v-icon>
+        <div class="v-slides-pre" @click="preSlide">
+          <v-icon name="left" size="size-2x"></v-icon>
         </div>
         <slot></slot>
       </div>
@@ -47,7 +47,7 @@
       //把当前的selected的值传给子组件
       this.updateChildrenSelected()
       this.autoPlaySlide()
-      this.childrenLength = this.$children.length
+      this.childrenLength = this.childrenItem.length
       this.lastSelectedIndex = this.nowSelectedIndex
     },
     updated() {
@@ -55,36 +55,38 @@
       this.updateChildrenSelected()
     },
     computed: {
+      childrenItem() {
+        return this.$children.filter(vm => vm.$options.name === 'vSlidesItem')
+      },
       getChildrenAllNames() {
-        return this.$children.map(vm => vm.name)
+        return this.childrenItem.map(vm => vm.name)
       },
       nowSelectedIndex() {
-        return this.getChildrenAllNames.indexOf(this.selected) || 0
+        return this.selected && this.getChildrenAllNames.indexOf(this.selected) || 0
       }
     },
     methods: {
       getSelected() {
-        let firstChildren = this.$children[0]
+        let firstChildren = this.childrenItem[0]
         return this.selected || firstChildren.name
       },
-      updateSelected(index) {
+      updateSelected(newIndex) {
         //index代表的是当前选中selected的索引
         this.lastSelectedIndex = this.nowSelectedIndex
-        this.$emit('update:selected', this.getChildrenAllNames[index])
+        if(newIndex === -1){newIndex = this.childrenItem.length - 1}
+        if(newIndex === this.childrenItem.length){newIndex = 0}
+        this.$emit('update:selected', this.getChildrenAllNames[newIndex])
         // this.updateChildrenSelected()
       },
       updateChildrenSelected() {
         let selected = this.getSelected()
-        this.$children.forEach(vm => {
+        this.childrenItem.forEach(vm => {
           let reverse = this.nowSelectedIndex > this.lastSelectedIndex ? false : true
-          if (this.timeId) {
-            //如果正在自动轮播，才执行这里
-            if (this.lastSelectedIndex === this.$children.length - 1 && this.nowSelectedIndex === 0) {
-              reverse = false
-            }
-            if (this.lastSelectedIndex === 0 && this.nowSelectedIndex === this.$children.length - 1) {
-              reverse = true
-            }
+          if (this.lastSelectedIndex === this.childrenItem.length - 1 && this.nowSelectedIndex === 0) {
+            reverse = false
+          }
+          if (this.lastSelectedIndex === 0 && this.nowSelectedIndex === this.childrenItem.length - 1) {
+            reverse = true
           }
           vm.reverse = reverse
           this.$nextTick(() => {
@@ -124,6 +126,12 @@
       },
       changeSlide(index) {
         this.updateSelected(index)
+      },
+      nextSlide() {
+        this.changeSlide(this.nowSelectedIndex + 1)
+      },
+      preSlide() {
+        this.changeSlide(this.nowSelectedIndex - 1)
       }
     }
   }
@@ -141,19 +149,41 @@
       > .v-slides-wrapper {
         position: relative;
 
-        > .v-slides-next{
+        > .v-slides-next {
+          /*border: 1px solid white;*/
           position: absolute;
           right: 10px;
           top: 50%;
           transform: translateY(-50%);
           z-index: 10;
+
+          > .v-icon {
+            fill: #fff;
+          }
+
+          > .v-icon:hover {
+            fill: #3eaf7c;
+          }
         }
-        > .v-slides-pre{
+
+        > .v-slides-next:hover {
+          display: block;
+        }
+
+        > .v-slides-pre {
           position: absolute;
           left: 10px;
           top: 50%;
           transform: translateY(-50%);
           z-index: 10;
+
+          > .v-icon {
+            fill: #fff;
+          }
+
+          > .v-icon:hover {
+            fill: #3eaf7c;
+          }
         }
       }
     }
