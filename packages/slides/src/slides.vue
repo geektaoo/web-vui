@@ -32,7 +32,7 @@
     components: {Icon},
     props: {
       selected: {type: String},
-      autoPlay: {type: Boolean, default: true}
+      autoPlay: {type: Boolean, default: false}
     },
     data() {
       return {
@@ -43,10 +43,12 @@
     },
     mounted() {
       //把当前的selected的值传给子组件
-      this.updateChildrenSelected()
-      this.autoPlaySlide()
       this.childrenLength = this.childrenItem.length
       this.lastSelectedIndex = this.nowSelectedIndex
+      this.updateChildrenSelected()
+      if (this.autoPlay === true) {
+        this.autoPlaySlide()
+      }
     },
     updated() {
       //属性发生更新就会触发
@@ -71,8 +73,12 @@
       updateSelected(newIndex) {
         //index代表的是当前选中selected的索引
         this.lastSelectedIndex = this.nowSelectedIndex
-        if(newIndex === -1){newIndex = this.childrenItem.length - 1}
-        if(newIndex === this.childrenItem.length){newIndex = 0}
+        if (newIndex === -1) {
+          newIndex = this.childrenItem.length - 1
+        }
+        if (newIndex === this.childrenItem.length) {
+          newIndex = 0
+        }
         this.$emit('update:selected', this.getChildrenAllNames[newIndex])
       },
       updateChildrenSelected() {
@@ -92,16 +98,24 @@
         })
       },
       autoPlaySlide() {
-        if (this.timeId) {return}
+        if (this.timeId) {
+          return
+        }
         let run = () => {
           let index = this.getChildrenAllNames.indexOf(this.getSelected())
           let newIndex = index + 1
-          if (newIndex === this.getChildrenAllNames.length) {newIndex = 0}
-          if (newIndex === -1) {newIndex = this.getChildrenAllNames.length - 1}
+          if (newIndex === this.getChildrenAllNames.length) {
+            newIndex = 0
+          }
+          if (newIndex === -1) {
+            newIndex = this.getChildrenAllNames.length - 1
+          }
           this.updateSelected(newIndex)//告诉外界选中的时newIndex
           this.timeId = setTimeout(run, 3000)
         }
-        this.timeId = setTimeout(run, 3000)//用setTimeout模拟setInterval
+        if (this.autoPlay === true) {
+          this.timeId = setTimeout(run, 3000)//用setTimeout模拟setInterval
+        }
       },
       onMouseEnter() {
         //鼠标滑入暂定动画
