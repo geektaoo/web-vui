@@ -29,12 +29,12 @@
       trigger: {
         type: String,
         default: 'click',
-        validator (value) {
+        validator(value) {
           return ['click', 'hover'].includes(value)
         }
       }
     },
-    mounted(){
+    mounted() {
       if (this.trigger === 'click') {
         this.$refs.popover.addEventListener('click', this.onClick)
       } else {
@@ -42,7 +42,7 @@
         this.$refs.popover.addEventListener('mouseleave', this.close)
       }
     },
-    destroyed () {
+    beforeDestroy() {
       if (this.trigger === 'click') {
         this.$refs.popover.removeEventListener('click', this.onClick)
       } else {
@@ -72,10 +72,14 @@
       onClickDocument(e) {
         if (this.$refs.popover &&
           (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))
-        ) { return }
+        ) {
+          return
+        }
         if (this.$refs.contentWrapper &&
           (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains(e.target))
-        ) { return }
+        ) {
+          return
+        }
         this.close()
       },
       open() {
