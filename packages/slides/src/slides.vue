@@ -2,6 +2,12 @@
   <div class="v-slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <div class="v-slides-window">
       <div class="v-slides-wrapper">
+        <div class="v-slides-next">
+          <v-icon name="right"></v-icon>
+        </div>
+        <div class="v-slides-pre">
+          <v-icon name="left"></v-icon>
+        </div>
         <slot></slot>
       </div>
     </div>
@@ -134,11 +140,25 @@
 
       > .v-slides-wrapper {
         position: relative;
+
+        > .v-slides-next{
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+        }
+        > .v-slides-pre{
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+        }
       }
     }
 
     > .v-slides-dot {
-      /*border: 1px solid red;*/
       position: absolute;
       bottom: 10px;
       left: 50%;
