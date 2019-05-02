@@ -1,5 +1,8 @@
 <template>
-  <div class="v-slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="v-slides"
+       @mouseenter="onMouseEnter"
+       @mouseleave="onMouseLeave"
+  >
     <div class="v-slides-window">
       <div class="v-slides-wrapper">
         <div class="v-slides-next" @click="nextSlide">
@@ -28,13 +31,8 @@
     name: 'vSlides',
     components: {Icon},
     props: {
-      selected: {
-        type: String
-      },
-      autoPlay: {
-        type: Boolean,
-        default: true
-      }
+      selected: {type: String},
+      autoPlay: {type: Boolean, default: true}
     },
     data() {
       return {
@@ -76,7 +74,6 @@
         if(newIndex === -1){newIndex = this.childrenItem.length - 1}
         if(newIndex === this.childrenItem.length){newIndex = 0}
         this.$emit('update:selected', this.getChildrenAllNames[newIndex])
-        // this.updateChildrenSelected()
       },
       updateChildrenSelected() {
         let selected = this.getSelected()
@@ -95,18 +92,12 @@
         })
       },
       autoPlaySlide() {
-        if (this.timeId) {
-          return
-        }
+        if (this.timeId) {return}
         let run = () => {
           let index = this.getChildrenAllNames.indexOf(this.getSelected())
           let newIndex = index + 1
-          if (newIndex === this.getChildrenAllNames.length) {
-            newIndex = 0
-          }
-          if (newIndex === -1) {
-            newIndex = this.getChildrenAllNames.length - 1
-          }
+          if (newIndex === this.getChildrenAllNames.length) {newIndex = 0}
+          if (newIndex === -1) {newIndex = this.getChildrenAllNames.length - 1}
           this.updateSelected(newIndex)//告诉外界选中的时newIndex
           this.timeId = setTimeout(run, 3000)
         }
@@ -150,7 +141,6 @@
         position: relative;
 
         > .v-slides-next {
-          /*border: 1px solid white;*/
           position: absolute;
           right: 10px;
           top: 50%;
@@ -164,10 +154,6 @@
           > .v-icon:hover {
             fill: #3eaf7c;
           }
-        }
-
-        > .v-slides-next:hover {
-          display: block;
         }
 
         > .v-slides-pre {
