@@ -93,7 +93,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../var";
+  @import '../../../style/var';
 
   .v-confirm {
     width: 100%;

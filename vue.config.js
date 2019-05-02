@@ -1,5 +1,13 @@
+// const path = require('path')
 module.exports = {
   // 修改 src 为 examples
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       includePaths: [path.join(__dirname, 'style')]
+  //     },
+  //   }
+  // },
   pages: {
     index: {
       entry: 'examples/main.js',
@@ -12,13 +20,13 @@ module.exports = {
     config.module
       .rule('js')
       .include
-        .add(/\/packages/)
-        .end()
+      .add(/\/packages/)
+      .end()
       .use('babel')
-        .loader('babel-loader')
-        .tap(options => {
-          // 修改它的选项...
-          return options
-        })
+      .loader('babel-loader')
+      .tap(options => {
+        // 修改它的选项...
+        return options
+      })
   }
 }

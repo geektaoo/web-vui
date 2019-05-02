@@ -138,7 +138,7 @@
 </script>
 
 <style>
-  @import "../packages/var.scss";
+  @import "../style/var.scss";
 
   #app {
     margin-top: 30px;

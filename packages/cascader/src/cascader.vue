@@ -88,7 +88,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../var";
+  @import '../../../style/var';
 
   .v-cascader {
     font-size: 14px;

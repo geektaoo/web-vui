@@ -51,7 +51,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../var";
+  @import '../../../style/var';
 
   .v-container {
     display: inline-flex;
