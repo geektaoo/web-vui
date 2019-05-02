@@ -1,20 +1,23 @@
 <template>
   <div id="app">
     <!--    <v-cascader :source="source" :selected.sync="selected"></v-cascader>-->
-    <v-slides :selected.sync="selected">
-      <v-slides-item name="1">
-        <div class="box">1</div>
-      </v-slides-item>
-      <v-slides-item name="2">
-        <div class="box">2</div>
-      </v-slides-item>
-      <v-slides-item name="3">
-        <div class="box">3</div>
-      </v-slides-item>
-      <v-slides-item name="4">
-        <div class="box">4</div>
-      </v-slides-item>
-    </v-slides>
+<!--    <v-slides :selected.sync="selected">-->
+<!--      <v-slides-item name="1">-->
+<!--        <div class="box">1</div>-->
+<!--      </v-slides-item>-->
+<!--      <v-slides-item name="2">-->
+<!--        <div class="box">2</div>-->
+<!--      </v-slides-item>-->
+<!--      <v-slides-item name="3">-->
+<!--        <div class="box">3</div>-->
+<!--      </v-slides-item>-->
+<!--      <v-slides-item name="4">-->
+<!--        <div class="box">4</div>-->
+<!--      </v-slides-item>-->
+<!--    </v-slides>-->
+
+
+    <v-menu></v-menu>
   </div>
 </template>
 

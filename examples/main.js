@@ -16,6 +16,7 @@ import Popover from '../packages/popover/index'
 import Collapse from '../packages/collapse/index'
 import Cascader from '../packages/cascader/index'
 import Slides from '../packages/slides/index'
+import Menu from '../packages/menu/index'
 
 Vue.component('v-button-group', ButtonGroup)
 Vue.component('v-input', Input)
@@ -32,6 +33,7 @@ Vue.use(Cascader)
 Vue.use(Icon)
 Vue.use(Button)
 Vue.use(Slides)
+Vue.use(Menu)
 
 new Vue({
   render: h => h(App)
