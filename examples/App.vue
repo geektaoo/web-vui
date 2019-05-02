@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-<!--    <v-cascader :source="source" :selected.sync="selected"></v-cascader>-->
-    <v-slides>
-      <v-slides-item>
+    <!--    <v-cascader :source="source" :selected.sync="selected"></v-cascader>-->
+    <v-slides :selected.sync="selected">
+      <v-slides-item name="1">
         <div class="box">1</div>
       </v-slides-item>
-      <v-slides-item>
+      <v-slides-item name="2">
         <div class="box">2</div>
       </v-slides-item>
-      <v-slides-item>
+      <v-slides-item name="3">
         <div class="box">3</div>
+      </v-slides-item>
+      <v-slides-item name="4">
+        <div class="box">4</div>
       </v-slides-item>
     </v-slides>
   </div>
@@ -66,28 +69,28 @@
                 ]
               },
               {
-                value:'baoding',
-                label:'保定市',
-                children:[
+                value: 'baoding',
+                label: '保定市',
+                children: [
                   {
-                    value:'jingxiu',
-                    label:'竞秀区'
+                    value: 'jingxiu',
+                    label: '竞秀区'
                   },
                   {
-                    value:'lianchi',
-                    label:'莲池区'
+                    value: 'lianchi',
+                    label: '莲池区'
                   },
                   {
-                    value:'mancheng',
-                    label:'满城区'
+                    value: 'mancheng',
+                    label: '满城区'
                   },
                   {
-                    value:'qingyuan',
-                    label:'清苑区'
+                    value: 'qingyuan',
+                    label: '清苑区'
                   },
                   {
-                    value:'xushui',
-                    label:'徐水区'
+                    value: 'xushui',
+                    label: '徐水区'
                   },
                 ]
               }
@@ -122,14 +125,14 @@
             ]
           },
           {
-            value:'tianjin',
-            label:'天津'
+            value: 'tianjin',
+            label: '天津'
           }
         ],
-        selected:[]
+        selected: '1'
       }
     },
-    methods: {
+    created() {
     }
   }
 </script>
@@ -147,11 +150,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .box{
-    width: 200px;
+
+  .box {
+    width: 400px;
     height: 150px;
     background: #dfe2e5;
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;

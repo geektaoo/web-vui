@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="v-slides-item" v-if="visible">
+    <div class="v-slides-item" v-if="visible" :class="{reverse}">
       <slot></slot>
     </div>
   </transition>
@@ -9,28 +9,49 @@
 <script>
   export default {
     name: 'vSlidesItem',
+    props: {
+      name: {
+        type: String,
+        required: true
+      }
+    },
     data() {
       return {
-        visible: false
+        selected: undefined,
+        reverse: false
+      }
+    },
+    computed: {
+      visible() {
+        return this.selected === this.name
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .slide-leave-active{
+  .slide-leave-active {
     position: absolute;
     left: 0;
     top: 0;
-    border: 10px solid red;
+    width: 100%;
+    height: 100%;
   }
+
   .slide-enter-active, .slide-leave-active {
-    transition: all 3s;
+    transition: all 1s;
   }
-  .slide-enter{
+
+  .slide-enter {
     transform: translateX(100%);
   }
-  .slide-leave-to{
+  .slide-enter.reverse {
     transform: translateX(-100%);
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
+  }
+  .slide-leave-to.reverse {
+    transform: translateX(100%);
   }
 </style>
