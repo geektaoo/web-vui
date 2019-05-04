@@ -1,23 +1,45 @@
 <template>
   <div id="app">
     <!--    <v-cascader :source="source" :selected.sync="selected"></v-cascader>-->
-<!--    <v-slides :selected.sync="selected">-->
-<!--      <v-slides-item name="1">-->
-<!--        <div class="box">1</div>-->
-<!--      </v-slides-item>-->
-<!--      <v-slides-item name="2">-->
-<!--        <div class="box">2</div>-->
-<!--      </v-slides-item>-->
-<!--      <v-slides-item name="3">-->
-<!--        <div class="box">3</div>-->
-<!--      </v-slides-item>-->
-<!--      <v-slides-item name="4">-->
-<!--        <div class="box">4</div>-->
-<!--      </v-slides-item>-->
-<!--    </v-slides>-->
+    <!--    <v-slides :selected.sync="selected">-->
+    <!--      <v-slides-item name="1">-->
+    <!--        <div class="box">1</div>-->
+    <!--      </v-slides-item>-->
+    <!--      <v-slides-item name="2">-->
+    <!--        <div class="box">2</div>-->
+    <!--      </v-slides-item>-->
+    <!--      <v-slides-item name="3">-->
+    <!--        <div class="box">3</div>-->
+    <!--      </v-slides-item>-->
+    <!--      <v-slides-item name="4">-->
+    <!--        <div class="box">4</div>-->
+    <!--      </v-slides-item>-->
+    <!--    </v-slides>-->
 
 
-    <v-menu></v-menu>
+    <v-menu :selected.sync="selected">
+      <v-menu-item name="首页">首页</v-menu-item>
+      <v-sub-menu>
+        <template slot="title">关于</template>
+        <v-menu-item name="团队">团队介绍</v-menu-item>
+        <v-menu-item name="学校">学校介绍</v-menu-item>
+        <v-sub-menu>
+          <template slot="title">家庭联系</template>
+          <v-menu-item name="QQ">QQ联系</v-menu-item>
+          <v-menu-item name="wechat">微信联系</v-menu-item>
+          <v-sub-menu>
+            <template slot="title">电话联系</template>
+            <v-menu-item name="移动">移动</v-menu-item>
+            <v-menu-item name="联通">联通</v-menu-item>
+            <v-menu-item name="电信">电信</v-menu-item>
+          </v-sub-menu>
+        </v-sub-menu>
+      </v-sub-menu>
+      <!--      <v-menu-item name="about">关于</v-menu-item>-->
+      <v-menu-item name="前端">前端</v-menu-item>
+    </v-menu>
+
+    <p style="display: inline; margin-left: 50px">{{selected}}</p>
   </div>
 </template>
 
@@ -132,7 +154,7 @@
             label: '天津'
           }
         ],
-        selected: undefined
+        selected: '前端'
       }
     },
     created() {
@@ -142,6 +164,10 @@
 
 <style>
   @import "../style/var.scss";
+
+  * {
+    /*box-sizing: border-box;*/
+  }
 
   #app {
     margin-top: 30px;
