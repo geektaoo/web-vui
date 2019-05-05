@@ -40,6 +40,7 @@
     </v-menu>
 
     <p style="display: inline; margin-left: 50px">{{selected}}</p>
+    <v-icon class="icon" name="setting"></v-icon>
   </div>
 </template>
 
@@ -180,13 +181,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .box {
-    width: 400px;
-    height: 150px;
-    background: #dfe2e5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
+  .icon{
+    fill:red;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="v-menu">
-    <p>{{currentSelected}}</p>
+<!--    <p>{{currentSelected}}</p>-->
     <slot></slot>
   </div>
 </template>
@@ -53,6 +53,6 @@
     align-items: center;
     transition: .3s all ease-in;
     white-space: nowrap;
-    border: 1px solid red;
+    user-select: none;
   }
 </style>

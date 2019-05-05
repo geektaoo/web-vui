@@ -2,6 +2,9 @@
   <div class="v-sub-menu" ref="subMenu">
     <div class="title" @click="onClick" :class="{active:subActive}">
       <slot name="title"></slot>
+      <span class="icon" :class="{iconActive:open}">
+        <v-icon name="right"></v-icon>
+      </span>
     </div>
     <transition
         @before-enter="beforeEnter"
@@ -18,8 +21,11 @@
 </template>
 
 <script>
+  import Icon from '../../icon/index'
+
   export default {
     name: 'vSubMenu',
+    components: {Icon},
     inject: ['eventBus', 'root'],
     data() {
       return {
@@ -108,6 +114,7 @@
     height: 100%;
 
     > .title {
+      box-sizing: border-box;
       height: 100%;
       padding: 10px 20px;
       white-space: nowrap;
@@ -115,8 +122,19 @@
       justify-content: flex-start;
       align-items: center;
 
+      > .icon {
+        display: none;
+        width: 0.8em;
+        fill: rgb(191, 191, 191);
+        transition: all .3s ease;
+      }
+
       &.active {
         color: #55E6C1;
+
+        > .icon {
+          fill: rgb(129, 236, 236);
+        }
       }
     }
 
@@ -145,15 +163,29 @@
   }
 
   .v-sub-menu .v-sub-menu {
-    .line {
+    > .title {
+      .icon {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 8px;
+        transition: all .3s ease;
+
+        &.iconActive {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    > .line {
       display: none;
+    }
+
+    > .popover {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-left: 4px;
     }
   }
 
-  .v-sub-menu .v-sub-menu .popover {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-left: 4px;
-  }
 </style>
