@@ -1,5 +1,5 @@
 <template>
-  <div class="v-sub-menu" ref="subMenu">
+  <div class="v-sub-menu" ref="subMenu" :class="{vertical}">
     <div class="title" @click="onClick" :class="{active:subActive}">
       <slot name="title"></slot>
       <span class="icon" :class="{iconActive:open}">
@@ -12,11 +12,14 @@
         @before-leave="beforeLeave"
         @leave="leave"
     >
-      <div class="line" v-show="subActive"></div>
+      <div class="line" v-show="subActive" :class="{vertical}"></div>
     </transition>
-    <div class="popover" v-show="open">
-      <slot></slot>
-    </div>
+
+    <transition>
+      <div class="popover" v-show="open" :class="{vertical}">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -26,7 +29,7 @@
   export default {
     name: 'vSubMenu',
     components: {Icon},
-    inject: ['eventBus', 'root'],
+    inject: ['eventBus', 'root', 'vertical'],
     data() {
       return {
         open: false
@@ -113,6 +116,16 @@
     position: relative;
     height: 100%;
 
+    &.vertical {
+      width: 100%;
+
+      > .title {
+        &.active {
+          background: #f5fefb;
+        }
+      }
+    }
+
     > .title {
       box-sizing: border-box;
       height: 100%;
@@ -145,6 +158,10 @@
       left: 0;
       transition: all .3s ease;
       border-bottom: 2px solid #55E6C1;
+
+      &.vertical {
+        display: none;
+      }
     }
 
     > .popover {
@@ -159,6 +176,12 @@
       box-shadow: $box-shadow;
       font-size: 14px;
       min-width: 8em;
+
+      &.vertical {
+        position: static;
+        border: none;
+        box-shadow: none;
+      }
     }
   }
 
@@ -185,6 +208,12 @@
       top: 0;
       left: 100%;
       margin-left: 4px;
+
+      &.vertical {
+        position: static;
+        box-shadow: none;
+        margin-left: 0;
+      }
     }
   }
 

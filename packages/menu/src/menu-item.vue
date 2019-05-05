@@ -1,5 +1,5 @@
 <template>
-  <div class="v-menu-item" @click="onClick" :class="{active}">
+  <div class="v-menu-item" @click="onClick" :class="{active,vertical}">
     <slot></slot>
     <transition
         @before-enter="beforeEnter"
@@ -7,7 +7,7 @@
         @before-leave="beforeLeave"
         @leave="leave"
     >
-      <div class="line" v-show="active"></div>
+      <div class="line" v-show="active" :class="{vertical}"></div>
     </transition>
   </div>
 </template>
@@ -20,7 +20,7 @@
         active: false
       }
     },
-    inject: ['eventBus', 'root'],
+    inject: ['eventBus', 'root','vertical'],
     props: {
       name: {
         type: String,
@@ -86,6 +86,10 @@
 
     &.active {
       color: #55E6C1;
+
+      &.vertical{
+        background:#f5fefb;
+      }
     }
 
     > .line {
@@ -95,6 +99,10 @@
       left: 0;
       transition: all .3s ease;
       border-bottom: 2px solid #55E6C1;
+
+      &.vertical{
+        display: none;
+      }
     }
   }
 
