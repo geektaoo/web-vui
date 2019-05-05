@@ -1,6 +1,14 @@
 <template>
   <div class="v-menu-item" @click="onClick" :class="{active}">
     <slot></slot>
+    <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @before-leave="beforeLeave"
+        @leave="leave"
+    >
+      <div class="line" v-show="active"></div>
+    </transition>
   </div>
 </template>
 
@@ -12,7 +20,7 @@
         active: false
       }
     },
-    inject: ['eventBus'],
+    inject: ['eventBus', 'root'],
     props: {
       name: {
         type: String,
@@ -20,20 +28,45 @@
       }
     },
     mounted() {
+      this.eventBus.$on('selected', (name) => {
+        this.listenToActive(name)
+      })
       this.eventBus.$on('click-item', (name) => {
         this.listenToActive(name)
       })
-      this.eventBus.$on('firstSelected', (name) => {
-        this.listenToActive(name)
-      })
     },
+    computed: {},
     methods: {
       onClick() {
         this.eventBus.$emit('click-item', this.name)
+        this.eventBus.$emit('close-popover', this.name)
+        /**
+         *  如果当前的item的parent有updateCurrentPath方法，才会调用updateCurrentPath()。
+         *  保证了只有在menu里面item才能运行的方法
+         **/
+        this.$parent.updateCurrentPath && this.$parent.updateCurrentPath()
       },
-      listenToActive(item) {
-        this.active = this.name === item
-      }
+      listenToActive(name) {
+        return this.active = this.name === name
+      },
+      beforeEnter(el) {
+        el.style.left = '50%'
+        el.style.width = 0
+      },
+      enter(el) {
+        setTimeout(() => {
+          el.style.width = '100%'
+          el.style.left = '0'
+        })
+      },
+      leave(el) {
+        el.style.left = '50%'
+        el.style.width = 0
+      },
+      beforeLeave(el) {
+        el.style.width = '100%'
+        el.style.left = '0'
+      },
     }
   }
 </script>
@@ -43,18 +76,37 @@
 
   .v-menu-item {
     height: 100%;
-    padding: 15px 25px;
+    padding: 10px 20px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    /*border: 1px solid blue;*/
 
     &.active {
-      color: $font-main-color;
-      &::after{
-        content: '';
-      }
+      color: #55E6C1;
+    }
+
+    > .line {
+      width: 100%;
+      bottom: 0;
+      position: absolute;
+      left: 0;
+      transition: all .3s ease;
+      border-bottom: 2px solid #55E6C1;
+    }
+  }
+
+  .v-sub-menu .v-menu-item {
+    transition: all .3s ease;
+
+    &.active {
+      background: $background-light;
+    }
+
+    > .line {
+      display: none;
     }
   }
 </style>

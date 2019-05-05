@@ -1,5 +1,6 @@
 <template>
   <div class="v-menu">
+    <p>{{currentSelected}}</p>
     <slot></slot>
   </div>
 </template>
@@ -11,26 +12,33 @@
     name: 'vMenu',
     data() {
       return {
-        eventBus: new Vue()
+        eventBus: new Vue(),
+        currentSelected: []
       }
     },
     provide() {
       return {
-        eventBus: this.eventBus
+        eventBus: this.eventBus,
+        root: this
       }
     },
     props: {
       selected: {
         type: String,
-        required:true
+        required: true
       }
     },
     mounted() {
+      //根据初选值，高亮selected的下标
+      this.currentSelected.push(this.selected)
+      this.eventBus.$emit('selected', this.selected)
       this.eventBus.$on('click-item', (name) => {
+        this.currentSelected = []
+        this.currentSelected.push(name)
         this.$emit('update:selected', name)
       })
-      this.eventBus.$emit('firstSelected',this.selected)
-    }
+    },
+    methods: {}
   }
 </script>
 
@@ -38,11 +46,13 @@
   @import "../../../style/var";
 
   .v-menu {
-    border: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
     display: flex;
     cursor: pointer;
     justify-content: flex-start;
     align-items: center;
     transition: .3s all ease-in;
+    white-space: nowrap;
+    border: 1px solid red;
   }
 </style>
