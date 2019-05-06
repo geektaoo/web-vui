@@ -75,17 +75,17 @@
   @import "../../../style/var";
 
   .v-menu-item {
-    height: 100%;
+    /*height: 100%;*/
     padding: 10px 20px;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    /*border: 1px solid blue;*/
 
     &.active {
       color: #55E6C1;
+      transition: all .3s ease;
 
       &.vertical{
         background:#f5fefb;
@@ -112,9 +112,12 @@
     &.active {
       background: $background-light;
     }
-
-    > .line {
+    .line{
       display: none;
+    }
+
+    &.vertical{
+      margin-left: 4px;
     }
   }
 </style>

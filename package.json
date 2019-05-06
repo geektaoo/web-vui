@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "velocity-animate": "^1.5.2",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue2-transitions": "^0.3.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
