@@ -19,7 +19,7 @@
       return {
         eventBus: this.eventBus,
         root: this,
-        vertical:this.vertical
+        vertical: this.vertical
       }
     },
     props: {
@@ -27,9 +27,9 @@
         type: String,
         required: true
       },
-      vertical:{
-        type:Boolean,
-        default:false
+      vertical: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -58,9 +58,8 @@
     transition: .3s all ease-in;
     white-space: nowrap;
     user-select: none;
-    /*border: 1px solid red;*/
 
-    &.vertical{
+    &.vertical {
       min-width: 12em;
       display: inline-flex;
       flex-direction: column;

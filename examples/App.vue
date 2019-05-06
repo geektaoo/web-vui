@@ -16,7 +16,7 @@
     <!--      </v-slides-item>-->
     <!--    </v-slides>-->
 
-
+<!--
     <v-menu :selected.sync="selected">
       <v-menu-item name="首页">首页</v-menu-item>
       <v-sub-menu name="关于">
@@ -35,7 +35,7 @@
           </v-sub-menu>
         </v-sub-menu>
       </v-sub-menu>
-      <!--      <v-menu-item name="about">关于</v-menu-item>-->
+      <v-menu-item name="about">关于</v-menu-item>
       <v-menu-item name="前端">前端</v-menu-item>
     </v-menu>
 
@@ -58,10 +58,10 @@
           </v-sub-menu>
         </v-sub-menu>
       </v-sub-menu>
-      <!--      <v-menu-item name="about">关于</v-menu-item>-->
+      <v-menu-item name="about">关于</v-menu-item>
       <v-menu-item name="前端">前端</v-menu-item>
     </v-menu>
-
+-->
   </div>
 </template>
 

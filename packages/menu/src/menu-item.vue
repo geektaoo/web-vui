@@ -20,7 +20,7 @@
         active: false
       }
     },
-    inject: ['eventBus', 'root','vertical'],
+    inject: ['eventBus', 'root', 'vertical'],
     props: {
       name: {
         type: String,
@@ -87,8 +87,8 @@
       color: #55E6C1;
       transition: all .3s ease;
 
-      &.vertical{
-        background:#f5fefb;
+      &.vertical {
+        background: #f5fefb;
       }
     }
 
@@ -100,7 +100,7 @@
       transition: all .3s ease;
       border-bottom: 2px solid #55E6C1;
 
-      &.vertical{
+      &.vertical {
         display: none;
       }
     }
@@ -112,11 +112,12 @@
     &.active {
       background: $background-light;
     }
-    .line{
+
+    .line {
       display: none;
     }
 
-    &.vertical{
+    &.vertical {
       margin-left: 4px;
     }
   }
