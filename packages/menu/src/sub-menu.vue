@@ -202,7 +202,7 @@
       transition: all .3s ease;
       border-bottom: 2px solid #55E6C1;
 
-      &.vertical {
+      &.vertical{
         display: none;
       }
     }
