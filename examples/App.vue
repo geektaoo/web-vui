@@ -201,7 +201,4 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .icon{
-    fill:red;
-  }
 </style>

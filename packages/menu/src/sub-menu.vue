@@ -15,7 +15,14 @@
       <div class="line" v-show="subActive" :class="{vertical}"></div>
     </transition>
 
-    <transition>
+    <transition
+        @before-enter="popoverBeforeEnter"
+        @enter="popoverEnter"
+        @after-enter="popoverAfterEnter"
+        @before-leave="popoverBeforeLeave"
+        @leave="popoverLeave"
+        @after-leave="popoverAfterLeave"
+    >
       <div class="popover" v-show="open" :class="{vertical}">
         <slot></slot>
       </div>
@@ -24,11 +31,11 @@
 </template>
 
 <script>
-  import Icon from '../../icon/index'
+  import vIcon from '../../icon/index'
 
   export default {
     name: 'vSubMenu',
-    components: {Icon},
+    components: {vIcon},
     inject: ['eventBus', 'root', 'vertical'],
     data() {
       return {
@@ -97,13 +104,50 @@
           el.style.left = '0'
         })
       },
+      beforeLeave(el) {
+        el.style.width = '100%'
+        el.style.left = '0'
+      },
       leave(el) {
         el.style.left = '50%'
         el.style.width = 0
       },
-      beforeLeave(el) {
-        el.style.width = '100%'
-        el.style.left = '0'
+      popoverBeforeEnter(el) {
+        el.style.height = 0
+        el.style.paddingTop = 0
+        el.style.paddingBottom = 0
+        el.style.overflow = 'hidden'
+        el.style.transition = '.3s all ease-in-out'
+      },
+      popoverEnter(el) {
+        el.style.height = el.scrollHeight + 'px'
+      },
+      popoverAfterEnter(el) {
+        el.style.overflow = ''
+        if (this.vertical) {
+          el.style.height = ''
+        }
+      },
+      popoverBeforeLeave(el) {
+        el.style.height = el.scrollHeight + 'px'
+        el.style.overflow = 'hidden'
+        el.style.transition = '.1s all ease-in-out'
+        if (this.vertical) {
+          el.style.transition = '.3s all'
+        }
+      },
+      popoverLeave(el) {
+        setTimeout(() => {
+          el.style.height = 0
+          el.style.paddingTop = 0
+          el.style.paddingBottom = 0
+        })
+      },
+      popoverAfterLeave(el) {
+        el.style.overflow = ''
+        if (this.vertical) {
+          el.style.height = ''
+        }
       }
     }
   }
@@ -116,19 +160,8 @@
     position: relative;
     height: 100%;
 
-    &.vertical {
-      width: 100%;
-
-      > .title {
-        &.active {
-          background: #f5fefb;
-        }
-      }
-    }
-
     > .title {
       box-sizing: border-box;
-      height: 100%;
       padding: 10px 20px;
       white-space: nowrap;
       display: flex;
@@ -147,6 +180,16 @@
 
         > .icon {
           fill: rgb(129, 236, 236);
+        }
+      }
+    }
+
+    &.vertical {
+      width: 100%;
+
+      > .title {
+        &.active {
+          background: #f5fefb;
         }
       }
     }
@@ -187,6 +230,13 @@
 
   .v-sub-menu .v-sub-menu {
     > .title {
+      color: #57606f;
+      font-weight: 600;
+
+      &.active {
+        color: #55E6C1;
+      }
+
       .icon {
         display: inline-flex;
         align-items: center;
@@ -199,7 +249,7 @@
       }
     }
 
-    > .line {
+    .line {
       display: none;
     }
 
@@ -212,7 +262,7 @@
       &.vertical {
         position: static;
         box-shadow: none;
-        margin-left: 0;
+        margin-left: 4px;
       }
     }
   }
