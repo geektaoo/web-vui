@@ -17,6 +17,7 @@ import Collapse from '../packages/collapse/index'
 import Cascader from '../packages/cascader/index'
 import Slides from '../packages/slides/index'
 import Menu from '../packages/menu/index'
+import Pagination from '../packages/pagination/index'
 
 Vue.component('v-button-group', ButtonGroup)
 Vue.component('v-input', Input)
@@ -34,6 +35,7 @@ Vue.use(Icon)
 Vue.use(Button)
 Vue.use(Slides)
 Vue.use(Menu)
+Vue.use(Pagination)
 
 new Vue({
   render: h => h(App)

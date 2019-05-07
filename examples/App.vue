@@ -61,6 +61,9 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
+
+
+    <v-pagination></v-pagination>
   </div>
 </template>
 
@@ -185,10 +188,6 @@
 
 <style>
   @import "../style/var.scss";
-
-  * {
-    /*box-sizing: border-box;*/
-  }
 
   #app {
     margin-top: 30px;
