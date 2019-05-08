@@ -23,19 +23,20 @@
         default: true
       }
     },
-    data() {
-      //页码显示，第一页，最后一页，当前页，当前-1，当前-2，当前+1，当前+2
-      let pages = [1, this.totalPage, this.currentPage, this.currentPage - 1,this.currentPage + 1]
-      let n = this.unique(pages.sort((a, b) => a - b))
-      let n2 = n.reduce((prev, current, index, array) => {
-        prev.push(current)
-        if (array[index + 1] !== 'undefined' && array[index + 1] - array[index] > 1) {
-          prev.push('...')
-        }
-        return prev
-      }, [])
-      return {
-        pages: n2
+    computed: {
+      pages() {
+        //Array Format 页码显示，第一页，最后一页，当前页，当前-1，当前+1
+        let arrayFormat = [1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage + 1]
+        //对Array Format排序,去重
+        let array = this.unique(arrayFormat.sort((a, b) => a - b))
+        let pages = array.reduce((prev, current, index, array) => {
+          prev.push(current)
+          if (array[index + 1] !== 'undefined' && array[index + 1] - array[index] > 1) {
+            prev.push('...')
+          }
+          return prev
+        }, [])
+        return pages
       }
     },
     methods: {
