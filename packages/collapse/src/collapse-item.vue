@@ -1,27 +1,32 @@
 <template>
   <div class="v-collapse-item">
     <div class="title" @click="onClick">
-      <v-icon :name="iconName" class="icon"></v-icon>
+      <v-icon class="icon" name="right" :class="{rotate:visible}"></v-icon>
       <span>{{title}}</span>
     </div>
-    <div class="content" v-if="visible">
-      <slot></slot>
-    </div>
+
+    <collapse>
+      <div class="content" v-show="visible" ref="content">
+        <slot></slot>
+      </div>
+    </collapse>
   </div>
 </template>
 
 <script>
-  import Icon from '../../icon/src/icon'
+  import vIcon from '../../icon/src/icon'
+  import collapse from '../../collapse'
+
   export default {
     name: 'vCollapseItem',
+    components: {
+      vIcon,
+      collapse
+    },
     data() {
       return {
         visible: false,
-        iconName:'right'
       }
-    },
-    components:{
-      'v-icon':Icon
     },
     props: {
       title: {
@@ -37,10 +42,8 @@
     mounted() {
       this.eventBus.$on('update:selected', (names) => {
         if (names.includes(this.name)) {
-          this.iconName = 'down'
           this.visible = true
         } else {
-          this.iconName = 'right'
           this.visible = false
         }
       })
@@ -52,6 +55,35 @@
         } else {
           this.eventBus.$emit('update:addSelected', this.name)
         }
+      },
+      beforeEnter(el) {
+        el.style.height = 0
+        // el.style.paddingTop = 0
+        // el.style.paddingBottom = 0
+        el.style.overflow = 'hidden'
+        el.style.transition = '.3s all ease-in-out'
+      },
+      enter(el) {
+        el.style.height = el.scrollHeight + 'px'
+      },
+      afterEnter(el) {
+        el.style.overflow = ''
+        el.style.height = ''
+      },
+      beforeLeave(el) {
+        el.style.height = el.scrollHeight + 'px'
+        el.style.overflow = 'hidden'
+        el.style.transition = '.3s all'
+      },
+      leave(el) {
+        setTimeout(() => {
+          el.style.height = 0
+        })
+      },
+      afterLeave(el) {
+        el.style.overflow = ''
+        el.style.height = ''
+        el.style.transition = '.3s all'
       }
     }
   }
@@ -72,8 +104,14 @@
       align-items: center;
       padding: 10px 8px;
       cursor: pointer;
-      >.icon{
+
+      > .icon {
         padding-right: 4px;
+        transition: 0.3s all;
+
+        &.rotate {
+          transform: rotate(90deg);
+        }
       }
     }
 
@@ -95,6 +133,7 @@
     > .content {
       padding: 10px 8px;
       background: #f5f6f8;
+      transition: height .5s;
     }
   }
 </style>

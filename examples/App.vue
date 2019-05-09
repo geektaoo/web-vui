@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <v-cascader :source="source" :selected.sync="selected"></v-cascader>
     <!--
     <v-slides :selected.sync="selected">
       <v-slides-item name="1">
@@ -61,7 +60,17 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-
+    <v-collapse :selected="selectedArray" style="width: 600px">
+      <v-collapse-item title="刘亦菲" name="title1">
+        刘亦菲（1987年8月25日－），曾用名安风、刘茜美子，美籍华人，中国大陆女演员
+      </v-collapse-item>
+      <v-collapse-item title="关晓彤" name="title2">
+        关晓彤（1997年9月17日－），中国大陆女演员，出生于北京，满族人
+      </v-collapse-item>
+      <v-collapse-item title="李沁" name="title3">
+        李沁（1990年9月27日－），江苏昆山人，中国女演员
+      </v-collapse-item>
+    </v-collapse>
 
   </div>
 </template>
@@ -71,112 +80,7 @@
     name: 'app',
     data() {
       return {
-        source: [
-          {
-            value: 'hebei',
-            label: '河北',
-            children: [
-              {
-                value: 'shijiazhuang',
-                label: '石家庄',
-                children: [
-                  {
-                    value: 'changan',
-                    label: '长安区'
-                  },
-                  {
-                    value: 'xinhua',
-                    label: '新华区'
-                  },
-                  {
-                    value: 'yuhua',
-                    label: '裕华区'
-                  }
-                ]
-              },
-              {
-                value: 'tangshan',
-                label: '唐山',
-                children: [
-                  {
-                    value: 'lunan',
-                    label: '路南区'
-                  },
-                  {
-                    value: 'lubei',
-                    label: '路北区'
-                  },
-                  {
-                    value: 'kaiping',
-                    label: '开平区'
-                  },
-                  {
-                    value: 'guye',
-                    label: '古冶区'
-                  },
-                ]
-              },
-              {
-                value: 'baoding',
-                label: '保定市',
-                children: [
-                  {
-                    value: 'jingxiu',
-                    label: '竞秀区'
-                  },
-                  {
-                    value: 'lianchi',
-                    label: '莲池区'
-                  },
-                  {
-                    value: 'mancheng',
-                    label: '满城区'
-                  },
-                  {
-                    value: 'qingyuan',
-                    label: '清苑区'
-                  },
-                  {
-                    value: 'xushui',
-                    label: '徐水区'
-                  },
-                ]
-              }
-            ]
-          },
-          {
-            value: 'shanghai',
-            label: '上海',
-            children: [
-              {
-                value: 'baoshan',
-                label: '宝山'
-              },
-              {
-                value: 'jiading',
-                label: '嘉定',
-                children: [
-                  {
-                    value: 'haigan',
-                    label: '海港区'
-                  },
-                  {
-                    value: 'shanghaiguan',
-                    label: '山海关区'
-                  },
-                  {
-                    value: 'beidaihe',
-                    label: '北戴河区'
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            value: 'tianjin',
-            label: '天津'
-          }
-        ]
+        selectedArray:['title1','title2']
       }
     },
     created() {
