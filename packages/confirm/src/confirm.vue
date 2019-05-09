@@ -1,9 +1,5 @@
 <template>
-  <transition name="fate"
-              mode="out-in"
-              @enter="handleEnter"
-              @leave="handleLeave"
-  >
+  <fade-transition :duration="500">
     <div class="v-confirm" v-if="isShow">
       <div class="confirm-info">
         <div class="confirm-title" v-text="title"></div>
@@ -18,19 +14,20 @@
         </div>
       </div>
     </div>
-  </transition>
+  </fade-transition>
 </template>
 
 <script>
-  import Velocity from 'velocity-animate'
   import vButton from '../../button/src/button'
   import vIcon from '../../icon/src/icon'
+  import {FadeTransition} from 'vue2-transitions'
 
   export default {
     name: 'vConfirm',
     components: {
       vButton,
-      vIcon
+      vIcon,
+      FadeTransition
     },
     data() {
       return {
@@ -81,12 +78,6 @@
       },
       onClose() {
         this.isShow = false
-      },
-      handleEnter(el, done) {
-        Velocity(el, 'fadeIn', 500, done)
-      },
-      handleLeave(el, done) {
-        Velocity(el, 'reverse', 500, done)
       }
     }
   }
@@ -103,6 +94,7 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.2);
+    user-select: none;
 
     > .confirm-info {
       position: fixed;

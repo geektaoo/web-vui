@@ -1,8 +1,19 @@
-//导入组件，组内必须声明name
-import Confirm from './src/confirm'
+import confirmComponent from './src/confirm'
 
-//为组件提供install安装方法
-Confirm.install = Vue => Vue.component(Confirm.name, Confirm)
+const Confirm = {}
 
-//默认导出组件
+Confirm.install = function (Vue) {
+
+  Vue.prototype.$confirm = function (options) {
+    const ConfirmInstance = Vue.extend(confirmComponent)
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const vm = new ConfirmInstance({
+      propsData: options
+    })
+    vm.$mount(div)
+    return vm.confirm()
+  }
+}
+
 export default Confirm

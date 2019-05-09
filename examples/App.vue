@@ -60,17 +60,7 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-    <v-collapse :selected="selectedArray" style="width: 600px">
-      <v-collapse-item title="刘亦菲" name="title1">
-        刘亦菲（1987年8月25日－），曾用名安风、刘茜美子，美籍华人，中国大陆女演员
-      </v-collapse-item>
-      <v-collapse-item title="关晓彤" name="title2">
-        关晓彤（1997年9月17日－），中国大陆女演员，出生于北京，满族人
-      </v-collapse-item>
-      <v-collapse-item title="李沁" name="title3">
-        李沁（1990年9月27日－），江苏昆山人，中国女演员
-      </v-collapse-item>
-    </v-collapse>
+    <v-button @click="onClick">点击</v-button>
 
   </div>
 </template>
@@ -83,7 +73,21 @@
         selectedArray:['title1','title2']
       }
     },
-    created() {
+    methods:{
+      onClick() {
+        this.$confirm({
+          title: '通知',
+          content: '刘亦菲回来了，你要不要去见她？',
+          confirmText: '好的，我知道了',
+          cancleText: '我不想见她'
+        }).then(() => {
+          console.log('我知道他点击了确定按钮了')
+        })
+          .catch(() => {
+            console.log('我知道他点击了取消按钮')
+
+          })
+      }
     }
   }
 </script>
