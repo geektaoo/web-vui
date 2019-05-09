@@ -1,6 +1,8 @@
 <template>
   <div class="v-pagination">
-    <span class="v-pagination-" v-for="page in pages">
+    <span class="v-pagination-item"
+          v-for="page in pages"
+          :class="{active:currentPage === page,ellipsis:page==='...'}">
       {{page}}
     </span>
   </div>
@@ -55,7 +57,36 @@
 </script>
 
 <style lang="scss" scoped>
-  .v-pagination {
+  @import "../../../style/var";
 
+  .v-pagination {
+    &-item {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+      margin: 0 10px;
+      min-width: 40px;
+      min-height: 36px;
+      border: 1px solid #eee;
+      border-radius: $border-radius;
+      color: #bdc3c7;
+      cursor: pointer;
+
+      &.active {
+        color: #55efc4;
+        background: #dff9fb;
+        cursor: default;
+      }
+
+      &.ellipsis{
+        cursor: default;
+      }
+
+      &:hover {
+        border-color: #dff9fb;
+        color: #55efc4;
+      }
+    }
   }
 </style>
