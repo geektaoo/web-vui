@@ -1,6 +1,6 @@
 <template>
   <div class="v-pagination">
-    <span class="v-pagination-prve" :class="{disabled:currentPage === 1}" :click="onClickPrve">
+    <span class="v-pagination-prve" :class="{disabled:currentPage === 1}" @click="onClickPrve(currentPage)">
       <v-icon name="left"></v-icon>
     </span>
     <template class="" v-for="page in pages">
@@ -13,10 +13,10 @@
         </span>
       </template>
       <template v-else>
-        <span class="v-pagination-item">{{page}}</span>
+        <span class="v-pagination-item" @click="onClickPage(page)">{{page}}</span>
       </template>
     </template>
-    <span class="v-pagination-next" :class="{disabled: currentPage===totalPage}" :click="onClickNext">
+    <span class="v-pagination-next" :class="{disabled: currentPage===totalPage}" @click="onClickNext(currentPage)">
       <v-icon name="right"></v-icon>
     </span>
   </div>
@@ -44,15 +44,22 @@
     },
     computed: {
       pages() {
-        //Array Format 页码显示，第一页，最后一页，当前页，当前-1，当前-2,当前+2,当前+1
-        let arrayFormat = [1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage + 2, this.currentPage + 1, this.currentPage + 2]
+        //Array Format 页码格式
+        let arrayFormat = [1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2]
         //对Array Format排序,去重
+        if (this.currentPage <= 4) {
+          arrayFormat = [1, 2, 3, 4, 5, 6, 7, this.currentPage + 1, this.currentPage + 2, this.totalPage]
+        }
+        if (this.currentPage >= this.totalPage - 3) {
+          arrayFormat = [1, this.totalPage, this.currentPage, this.totalPage - 1, this.totalPage - 2, this.totalPage - 3, this.totalPage - 4, this.totalPage - 5, this.totalPage - 6]
+        }
         arrayFormat = arrayFormat.filter((n) => n >= 1 && n <= this.totalPage)
         let array = this.unique(arrayFormat.sort((a, b) => a - b))
         let pages = array.reduce((prev, current, index, array) => {
           prev.push(current)
-          if (array[index + 1] !== 'undefined' && array[index + 1] - array[index] > 1) {
-            prev.push('...')
+          let length = prev.length
+          if (prev[length - 2] && current - prev[length - 2] > 1) {
+            prev.splice(prev.length - 1, 0, '...')
           }
           return prev
         }, [])
@@ -70,10 +77,21 @@
           return JSON.parse(str)
         })
       },
-      onClickPrve() {
+      onClickPrve(page) {
+        if (page > 1 && page <= this.totalPage) {
+          this.$emit('update:currentPage', page - 1)
+        }
       },
-      onClickNext() {
+      onClickNext(page) {
+        if (page >= 1 && page < this.totalPage) {
+          this.$emit('update:currentPage', page + 1)
+        }
       },
+      onClickPage(page) {
+        if (page >= 1 && page <= this.totalPage) {
+          this.$emit('update:currentPage', page)
+        }
+      }
     }
   }
 </script>
@@ -137,8 +155,9 @@
       &.disabled {
         cursor: default;
         background: #ecf0f1;
-        svg{
-          fill:#bdc3c7;
+
+        svg {
+          fill: #bdc3c7;
         }
       }
     }

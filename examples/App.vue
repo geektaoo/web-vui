@@ -63,7 +63,7 @@
     -->
 
 
-    <v-pagination :totalPage="20" :currentPage="20"></v-pagination>
+    <v-pagination :totalPage="7" :currentPage.sync="currentPage"></v-pagination>
   </div>
 </template>
 
@@ -178,7 +178,8 @@
             label: '天津'
           }
         ],
-        selected: '前端'
+        selected: '前端',
+        currentPage: 1
       }
     },
     created() {
