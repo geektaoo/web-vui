@@ -81,7 +81,6 @@
     justify-items: flex-start;
     align-items: flex-start;
     height: 200px;
-    /*overflow:scroll;*/
 
     > .item-wrapper {
       height: 100%;

@@ -118,12 +118,15 @@
         right: 5px;
         top: 50%;
         transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         > .icon-down {
           transition: all 0.3s;
           width: 14px;
           height: 14px;
-          color: $cascader-icon-color;
+          fill: #bdc3c7;
 
           &.rotate {
             transform: rotate(180deg);
@@ -134,10 +137,10 @@
         > .icon-close {
           width: 16px;
           height: 16px;
-          fill: rgba(0, 0, 0, 0.8);
+          fill: #bdc3c7;
 
           &:hover {
-            fill: #000;
+            fill: #95a5a6;
           }
         }
       }
@@ -152,7 +155,7 @@
       border: 1px solid rgba(0, 0, 0, .15);
       border-radius: $border-radius;
       box-shadow: $box-shadow;
-      z-index: 1;
+      z-index: 10;
     }
   }
 </style>
