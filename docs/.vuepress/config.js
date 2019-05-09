@@ -37,7 +37,8 @@ module.exports = {
           '/components/input/',
           '/components/popover/',
           '/components/tabs/',
-          '/components/toast/'
+          '/components/toast/',
+          '/components/pagination/'
         ]
       }
     ]

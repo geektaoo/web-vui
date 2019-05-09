@@ -63,7 +63,7 @@
     -->
 
 
-    <v-pagination :totalPage="7" :currentPage.sync="currentPage"></v-pagination>
+    <v-pagination :totalPage="10" :currentPage.sync="currentPage"></v-pagination>
   </div>
 </template>
 
