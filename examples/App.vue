@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <!--
-    <v-slides :selected.sync="selected">
+    <v-slides :selected.sync="selected" style="width: 400px;" autoPlay>
       <v-slides-item name="1">
         <div class="box">1</div>
       </v-slides-item>
@@ -15,7 +14,6 @@
         <div class="box">4</div>
       </v-slides-item>
     </v-slides>
-    -->
     <!--
         <v-menu :selected.sync="selected">
           <v-menu-item name="首页">首页</v-menu-item>
@@ -60,7 +58,6 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-    <v-button @click="onclick">点击</v-button>
   </div>
 </template>
 
@@ -69,23 +66,12 @@
     name: 'app',
     data() {
       return {
-        selectedArray: ['title1', 'title2'],
-    }
-    },
-    mounted(){
-    },
-    methods: {
-      onclick(){
-        this.$toast({
-          content:'这是一段内容',
-          showClose: true,
-          position:'bottom',
-          onClose(){
-            alert('我知道了')
-          }
-        })
+        selected: "1",
       }
-    }
+    },
+    mounted() {
+    },
+    methods: {}
   }
 </script>
 
@@ -99,6 +85,15 @@
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
   }
-
+  .box{
+    width: 400px;
+    height: 200px;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 </style>

@@ -25,11 +25,11 @@
 </template>
 
 <script>
-  import Icon from '../../icon/index'
+  import vIcon from '../../icon/index'
 
   export default {
     name: 'vSlides',
-    components: {Icon},
+    components: {vIcon},
     props: {
       selected: {type: String},
       autoPlay: {type: Boolean, default: false}
@@ -144,7 +144,6 @@
 
 <style scoped lang="scss">
   .v-slides {
-    border: 1px solid greenyellow;
     position: relative;
     cursor: pointer;
 

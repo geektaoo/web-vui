@@ -38,7 +38,9 @@ module.exports = {
           '/components/popover/',
           '/components/tabs/',
           '/components/toast/',
-          '/components/pagination/'
+          '/components/pagination/',
+          '/components/menu/',
+          '/components/slides/'
         ]
       }
     ]
