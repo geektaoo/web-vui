@@ -109,7 +109,6 @@
 <style lang="scss" scoped>
   .v-popover {
     display: inline-block;
-    border: 1px solid yellow;
     position: relative;
   }
 
@@ -123,6 +122,7 @@
     box-shadow: 0 0 4px 0 #babec1;
     max-width: 10em;
     word-break: break-all;
+    z-index: 10;
 
     &::before, &::after {
       content: '';

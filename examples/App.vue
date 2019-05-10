@@ -60,7 +60,12 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-    <v-input v-model="input" type="text"></v-input>
+    <v-popover>
+      <v-button>点击弹出</v-button>
+      <template slot="content">
+        这是内容
+      </template>
+    </v-popover>
   </div>
 </template>
 
@@ -81,10 +86,9 @@
   @import "../style/var.scss";
 
   #app {
-    margin-top: 30px;
+    margin-top: 100px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
-    margin: 30px auto;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
