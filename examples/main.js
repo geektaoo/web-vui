@@ -8,8 +8,7 @@ import ButtonGroup from '../packages/buttonGroup/src/button-group'
 import Input from '../packages/input/src/input'
 import Col from '../packages/grid/src/col'
 import Row from '../packages/grid/src/row'
-import Toast from '../packages/toast/src/toast'
-import ToastIndex from '../packages/toast/src/index'
+import Toast from '../packages/toast/index'
 import Comfirm from '../packages/confirm/index'
 import Tabs from '../packages/tabs/index'
 import Popover from '../packages/popover/index'
@@ -25,7 +24,7 @@ Vue.component('v-col', Col)
 Vue.component('v-row', Row)
 Vue.component('v-toast', Toast)
 
-Vue.use(ToastIndex,Button)
+Vue.use(Button)
 Vue.use(Comfirm)
 Vue.use(Tabs)
 Vue.use(Popover)
@@ -36,6 +35,7 @@ Vue.use(Button)
 Vue.use(Slides)
 Vue.use(Menu)
 Vue.use(Pagination)
+Vue.use(Toast)
 
 new Vue({
   render: h => h(App)

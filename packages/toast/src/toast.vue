@@ -39,7 +39,7 @@
         type: String,
         default: 'top',
         validator(value) {
-          return ['top', 'right', 'left', 'middle'].includes(value)
+          return ['top', 'right', 'left', 'middle','bottom'].includes(value)
         }
       },
       closeText: {
@@ -97,6 +97,7 @@
   $border-radius-middle: 4px;
   $toast-bg: #3eaf7c;
   $font-color: #fff;
+
   .v-toast {
     display: flex;
     align-items: center;
@@ -118,25 +119,25 @@
   }
 
   .position-top {
-    top: 10px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .position-bottom {
-    bottom: 10px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .position-left {
-    left: 20px;
-    top: 30px;
+    left: 30px;
+    top: 60px;
   }
 
   .position-right {
-    right: 20px;
-    top: 30px;
+    right: 30px;
+    top: 60px;
   }
 
   .position-middle {

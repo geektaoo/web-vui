@@ -1,11 +1,28 @@
+import toastComponent from './src/toast'
 
-//导入组件，组内必须声明name
-import Toast from './src/toast'
+let Toast = {}
 
-//为组件提供install安装方法
-Toast.install = Vue => Vue.component(Toast.name, Toast)
+Toast.install = function (Vue) {
 
-//默认导出组件
+  Vue.prototype.$toast = function (options) {
+    if (document.getElementsByClassName('v-toast').length) {
+      // 如果toast还在，则不再执行
+      return
+    }
+    const Constructor = Vue.extend(toastComponent)
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    let vm = new Constructor({
+      propsData: options
+    })
+    vm.$mount(div)
+
+    vm.isShow = true
+    return vm
+  }
+}
+
+
 export default Toast
 
 

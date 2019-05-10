@@ -60,30 +60,7 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-    <v-tabs :selected.sync="selectedName" style="width: 600px;border: 1px solid #eee;">
-      <v-tabs-nav>
-        <v-tabs-item name="society">社会</v-tabs-item>
-        <v-tabs-item name="science" disabled>科技</v-tabs-item>
-        <v-tabs-item name="finance">财经</v-tabs-item>
-        <v-tabs-item name="sport">运动</v-tabs-item>
-        <v-tabs-item name="gakki">美女</v-tabs-item>
-        <v-tabs-item name="liuyifei">经济</v-tabs-item>
-      </v-tabs-nav>
-      <v-tabs-body>
-        <v-tabs-pane name="society">
-
-        </v-tabs-pane>
-        <v-tabs-pane name="science">这是科技的新闻</v-tabs-pane>
-        <v-tabs-pane name="finance">这是财经的新闻</v-tabs-pane>
-        <v-tabs-pane name="sport">这是运动的新闻</v-tabs-pane>
-        <v-tabs-pane name="gakki">
-          <img src="./assets/gakki.jpg" alt="">
-        </v-tabs-pane>
-        <v-tabs-pane name="liuyifei">
-          <img src="./assets/liuyifei.jpg" alt="">
-        </v-tabs-pane>
-      </v-tabs-body>
-    </v-tabs>
+    <v-button @click="onclick">点击</v-button>
   </div>
 </template>
 
@@ -93,11 +70,22 @@
     data() {
       return {
         selectedArray: ['title1', 'title2'],
-        input : '真相',
-        selectedName:'society'
     }
     },
-    methods: {}
+    mounted(){
+    },
+    methods: {
+      onclick(){
+        this.$toast({
+          content:'这是一段内容',
+          showClose: true,
+          position:'bottom',
+          onClose(){
+            alert('我知道了')
+          }
+        })
+      }
+    }
   }
 </script>
 
