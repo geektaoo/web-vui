@@ -1,15 +1,17 @@
 <template>
   <div class="v-container" :class="{'error':error}">
     <input
-        type="text"
+        ref="input"
+        :type="type"
+        :value="currentValue"
         :placeholder="placeholder"
-        :value="value"
         :disabled="disabled"
-        @change="$emit('change',$event.target.value)"
-        @input="$emit('input',$event.target.value)"
-        @focus="$emit('focus',$event.target.value)"
-        @blur="$emit('blur',$event.target.value)"
+        @change="handleChange"
+        @input="handleInput"
     >
+    <span class="icon-clear" v-if="showClear" @click="onClear">
+      <v-icon name="close"></v-icon>
+    </span>
     <template v-if="error">
       <v-icon name="error" class="icon-error"></v-icon>
       <span class="errorMessage">{{error}}</span>
@@ -21,13 +23,21 @@
 </template>
 
 <script>
-  import Icon from '../../icon/src/icon'
+  import vIcon from '../../icon/src/icon'
 
   export default {
     name: 'vInput',
+    components: {vIcon},
     props: {
       value: {
         type: String
+      },
+      type: {
+        type: String,
+        default: 'text',
+        validator(value) {
+          return ['text', 'password'].includes(value)
+        }
       },
       placeholder: {
         type: String
@@ -44,8 +54,34 @@
         default: false
       }
     },
-    components: {
-      'v-icon': Icon
+    data() {
+      return {
+        currentValue: this.value
+      }
+    },
+    computed: {
+      showClear() {
+        return this.currentValue && this.currentValue !== ''
+      }
+    },
+    methods: {
+      handleInput(event) {
+        const value = event.target.value
+        this.$emit('input', value)
+        this.setCurrentValue(value)
+      },
+      handleChange(event) {
+        this.$emit('change', event.target.value)
+      },
+      setCurrentValue(value) {
+        this.currentValue = value
+      },
+      onClear() {
+        this.$emit('input', '')
+        this.$emit('change', '')
+        this.setCurrentValue('')
+        this.$refs.input.focus()
+      }
     }
   }
 </script>
@@ -59,6 +95,7 @@
     margin: 10px 0;
     font-size: $font-size;
     justify-items: center;
+    position: relative;
 
     > :not(:last-child) {
       margin-right: .5em;
@@ -108,6 +145,18 @@
       > input {
         border-color: $red;
       }
+    }
+
+    > .icon-clear {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      fill: #b2bec3;
+      cursor: pointer;
     }
 
     .icon-error {

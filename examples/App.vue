@@ -60,8 +60,7 @@
           <v-menu-item name="前端">前端</v-menu-item>
         </v-menu>
     -->
-    <v-button @click="onClick">点击</v-button>
-
+    <v-input v-model="input" type="text"></v-input>
   </div>
 </template>
 
@@ -70,25 +69,11 @@
     name: 'app',
     data() {
       return {
-        selectedArray:['title1','title2']
-      }
-    },
-    methods:{
-      onClick() {
-        this.$confirm({
-          title: '通知',
-          content: '刘亦菲回来了，你要不要去见她？',
-          confirmText: '好的，我知道了',
-          cancleText: '我不想见她'
-        }).then(() => {
-          console.log('我知道他点击了确定按钮了')
-        })
-          .catch(() => {
-            console.log('我知道他点击了取消按钮')
-
-          })
-      }
+        selectedArray: ['title1', 'title2'],
+        input : '真相'
     }
+    },
+    methods: {}
   }
 </script>
 
