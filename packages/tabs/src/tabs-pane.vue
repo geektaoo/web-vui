@@ -43,5 +43,6 @@
 <style lang="scss" scoped>
   .v-tabs-pane {
     padding: 10px;
+    position: relative;
   }
 </style>
