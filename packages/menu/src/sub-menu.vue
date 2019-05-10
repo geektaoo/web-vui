@@ -159,6 +159,7 @@
   .v-sub-menu {
     position: relative;
     height: 100%;
+    z-index: 10;
 
     > .title {
       box-sizing: border-box;
