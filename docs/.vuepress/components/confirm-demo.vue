@@ -7,7 +7,7 @@
 <script>
   import Vue from 'vue'
   import Button from '../../../packages/button/src/button'
-  import Comfirm from '../../../packages/confirm/src/index'
+  import Comfirm from '../../../packages/confirm/index'
 
   Vue.use(Comfirm)
   export default {
