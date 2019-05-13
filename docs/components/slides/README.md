@@ -1,4 +1,4 @@
-## slides
+## slides 轮播
 
 ## 基本用法
 
