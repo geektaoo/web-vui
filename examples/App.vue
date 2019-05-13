@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-date-picker></v-date-picker>
+    <v-date-picker v-model="time"></v-date-picker>
   </div>
 </template>
 
@@ -8,7 +8,9 @@
   export default {
     name: 'app',
     data() {
-      return {}
+      return {
+        time:new Date()
+      }
     },
     mounted() {
     },
@@ -20,13 +22,13 @@
   @import "../style/var.scss";
 
   #app {
-    margin-top: 100px;
+    margin-top: 20px;
     color: #2c3e50;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
   }
 </style>
