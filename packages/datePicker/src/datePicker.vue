@@ -5,27 +5,108 @@
       <div class="date-panel" v-show="panelState">
         <!--顶部按钮以及年月显示条-->
         <div class="topbar">
-          <span @click="onPre"><v-icon name="left"></v-icon></span>
-          <span class="year">{{tmpYear}}</span>
-          <span class="month">{{changeTmpMonth}}</span>
-          <span @click="onNext"><v-icon name="right"></v-icon></span>
+          <span class="icon" @click="onPre"><v-icon name="left"></v-icon></span>
+          <div class="topbar-date">
+            <span class="year">{{`${tmpYear}年`}}</span>
+            <span class="month">{{changeTmpMonth}}</span>
+          </div>
+          <span class="icon" @click="onNext"><v-icon name="right"></v-icon></span>
         </div>
         <!-- 日期面板-->
         <div class="date-group" v-show="panelType === 'date'">
-          <span class="weekday" v-for="(item,index) in weekList" :key="index">{{item.label}}</span>
-          <ul class="date-list">
-            <li v-for="(item,index) in dateList"
-                v-text="item.value"
-                :key="index"
-                :class="{
-                preMonth:item.previousMonth,
-                nextMonth:item.nextMonth,
-                selected: date === item.value && month === tmpMonth && item.currentMonth, invalid: validateDate(item)
-                }"
-                @click="selectDate(item)"
-            >
-            </li>
-          </ul>
+          <table>
+            <thead>
+            <tr>
+              <th class="weekday" v-for="(item,index) in weekList" :key="index">{{item.label}}</th>
+            </tr>
+            </thead>
+            <tbody class="date-list">
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(0,7)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(7,14)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(14,21)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(21,28)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(28,35)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            <tr class="row">
+              <td v-for="(item,index) in dateList.slice(35,42)"
+                  v-text="item.value"
+                  :key="index"
+                  :class="{
+                     preMonth:item.previousMonth,
+                     nextMonth:item.nextMonth,
+                     selected: date === item.value && month === tmpMonth && item.currentMonth,
+                     invalid: validateDate(item)
+                     }"
+                  @click="selectDate(item)"
+              >
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </transition>
@@ -125,10 +206,6 @@
       },
       changeTmpMonth() {
         return this.monthList[this.tmpMonth].label
-      },
-      // 通过改变this.tmpYear则可以改变年份数组
-      yearList() {
-        return Array.from({length: 12}, (value, index) => this.tmpYear + index)
       }
     },
     methods: {
@@ -196,7 +273,10 @@
       },
 // 确认是否为当前月份
       validateDate(item) {
-        if (this.nowValue === item.value && item.currentMonth) return true
+        if (this.nowValue === item.value && item.currentMonth) {
+
+          return true
+        }
       },
       onPre() {
         this.tmpMonth--
@@ -217,172 +297,138 @@
 </script>
 
 <style lang="scss" scoped>
-  .topbar {
-    padding-top: 8px;
-  }
-
-  .topbar span {
-    display: inline-block;
-    width: 20px;
-    height: 30px;
-    line-height: 30px;
-    color: #515a6e;
-    cursor: pointer;
-  }
-
-  .topbar span:hover {
-    color: #2d8cf0;
-  }
-
-  .topbar .year,
-  .topbar .month {
-    width: 60px;
-  }
-
-  .year-list {
-    height: 200px;
-    width: 210px;
-  }
-
-  .year-list .selected {
-    background: #2d8cf0;
-    border-radius: 4px;
-    color: #fff;
-  }
-
-  .year-list li {
-    display: inline-block;
-    width: 70px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .year-list span {
-    display: inline-block;
-    line-height: 16px;
-    padding: 8px;
-  }
-
-  .year-list span:hover {
-    background: #e1f0fe;
-  }
-
-  .weekday {
-    display: inline-block;
-    font-size: 13px;
-    width: 30px;
-    color: #c5c8ce;
-    text-align: center;
-  }
+  @import "../../../style/var";
 
   .v-datePicker {
-    width: 210px;
+    user-select: none;
+    width: 280px;
     text-align: center;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
-  }
 
-  .date-panel {
-    width: 210px;
-    box-shadow: 0 0 8px #ccc;
-    background: #fff;
-  }
+    > .input {
+      display: inline-flex;
+      box-sizing: border-box;
+      width: 100%;
+      height: $height;
+      padding: 16px;
+      font-size: 12px;
+      border: 1px solid #dcdee2;
+      border-radius: 4px;
+      color: #515a6e;
+      background-color: #fff;
+      background-image: none;
+      position: relative;
+      cursor: text;
+      transition: border 0.2s ease-in-out, background 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+      margin-bottom: 6px;
+    }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+    > .date-panel {
+      width: 280px;
+      box-shadow: 0 0 8px #ccc;
+      background: #fff;
 
-  .date-list {
-    width: 210px;
-    text-align: left;
-    height: 180px;
-    overflow: hidden;
-    margin-top: 4px;
-  }
+      > .topbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-  .date-list li {
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-    color: #000;
-    border: 1px solid #fff;
-    border-radius: 4px;
-  }
+        > .icon {
+          padding: 8px;
+          color: #515a6e;
+          cursor: pointer;
 
-  .date-list .selected {
-    border: 1px solid #2d8cf0;
-  }
+          &:hover {
+            fill: #1dd1a1;
+          }
+        }
 
-  .date-list .invalid {
-    background: #2d8cf0;
-    color: #fff;
-  }
+        > .topbar-date {
+          padding: 8px;
+          margin: 0 24px;
 
-  .date-list .preMonth,
-  .date-list .nextMonth {
-    color: #c5c8ce;
-  }
+          > .year, .month {
+            margin: 0 4px;
+          }
 
-  .date-list li:hover {
-    background: #e1f0fe;
-  }
+          &:hover {
+            color: #1dd1a1;
+          }
+        }
+      }
 
-  .input {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 32px;
-    line-height: 1.5;
-    padding: 4px 7px;
-    font-size: 12px;
-    border: 1px solid #dcdee2;
-    border-radius: 4px;
-    color: #515a6e;
-    background-color: #fff;
-    background-image: none;
-    position: relative;
-    cursor: text;
-    transition: border 0.2s ease-in-out, background 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
-    margin-bottom: 6px;
+      > .date-group {
+        border: 1px solid red;
+        padding: 8px;
+
+        > table {
+          width: 100%;
+          border-collapse: collapse;
+
+          > .weekday {
+            border: 1px solid red;
+            display: inline-block;
+            font-size: 16px;
+            padding: 0 8px;
+            color: #c5c8ce;
+            text-align: center;
+          }
+
+          > .date-list {
+            border: 1px solid red;
+            list-style: none;
+            text-align: left;
+            overflow: hidden;
+            margin-top: 4px;
+
+            > .row {
+
+              > td {
+                padding: 8px;
+                text-align: center;
+                border: 1px solid #f0f0f0;
+                cursor: pointer;
+                color: #000;
+                border-radius: 4px;
+
+                &.selected {
+                  background: #dff9fb;
+                  color: #1dd1a1;
+                }
+
+                &.invalid {
+                  color: #22a6b3;
+                }
+
+                &.preMonth, &.nextMonth {
+                  color: #c5c8ce;
+                }
+
+                &:hover {
+                  color: #55efc4;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .fadeDownBig-enter-active,
   .fadeDownBig-leave-active,
   .fadeInDownBig {
-    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
-    -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
   }
 
   .fadeDownBig-enter-active {
-    -webkit-animation-name: fadeInDownBig;
     animation-name: fadeInDownBig;
   }
 
   .fadeDownBig-leave-active {
-    -webkit-animation-name: fadeOutDownBig;
     animation-name: fadeOutDownBig;
-  }
-
-  @-webkit-keyframes fadeInDownBig {
-    from {
-      opacity: 0.8;
-      -webkit-transform: translate3d(0, -4px, 0);
-      transform: translate3d(0, -4px, 0);
-    }
-    to {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
   }
 
   @keyframes fadeInDownBig {
@@ -395,17 +441,6 @@
       opacity: 1;
       -webkit-transform: none;
       transform: none;
-    }
-  }
-
-  @-webkit-keyframes fadeOutDownBig {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0.8;
-      -webkit-transform: translate3d(0, -4px, 0);
-      transform: translate3d(0, -4px, 0);
     }
   }
 
