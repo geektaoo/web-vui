@@ -40,7 +40,8 @@ module.exports = {
           '/components/toast/',
           '/components/pagination/',
           '/components/menu/',
-          '/components/slides/'
+          '/components/slides/',
+          '/components/datePicker/'
         ]
       }
     ]

@@ -14,7 +14,7 @@
         </div>
         <!-- 日期面板-->
         <div class="date-group">
-          <table>
+          <table class="date-group-table">
             <thead>
             <tr>
               <th class="weekday" v-for="(item,index) in weekList" :key="index">{{item.label}}</th>
@@ -346,7 +346,7 @@
         }
 
         > .topbar-date {
-          padding: 8px;
+          padding: 8px !important;
           margin: 0 24px;
 
           > .year, .month {
@@ -360,16 +360,29 @@
       }
 
       > .date-group {
-        padding: 8px;
+        padding: 0 8px 8px;
 
-        > table {
+        > .date-group-table {
           width: 100%;
           border-collapse: collapse;
+          margin: 0;
+          display: table;
+
+          > thead {
+            > tr {
+              > .weekday {
+                font-size: 16px;
+                padding: 8px;
+                color: #c5c8ce;
+                text-align: center;
+              }
+            }
+          }
 
           > .weekday {
             display: inline-block;
             font-size: 16px;
-            padding: 0 8px;
+            padding: 0 8px !important;
             color: #c5c8ce;
             text-align: center;
           }
