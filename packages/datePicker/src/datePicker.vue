@@ -305,6 +305,7 @@
     width: 280px;
     text-align: center;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
+    position: relative;
 
     > .input {
       display: inline-flex;
@@ -329,6 +330,10 @@
       width: 280px;
       box-shadow: 0 0 8px #ccc;
       background: #fff;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: 10;
 
       > .topbar {
         display: flex;

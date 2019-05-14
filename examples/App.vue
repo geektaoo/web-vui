@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <v-date-picker v-model="time"></v-date-picker>
+    <h1>我是拉拉小仙女</h1>
   </div>
 </template>
 
@@ -27,8 +28,8 @@
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    justify-content: center;
+    /*-moz-osx-font-smoothing: grayscale;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
   }
 </style>
