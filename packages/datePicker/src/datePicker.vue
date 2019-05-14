@@ -1,5 +1,5 @@
 <template>
-  <div class="v-datePicker">
+  <div class="v-datePicker" @click.stop>
     <input type="text" class="input" :value="dateValue" @click="openPanel">
     <transition name="fadeDownBig">
       <div class="date-panel" v-show="panelState">
@@ -13,7 +13,7 @@
           <span class="icon" @click="onNext"><v-icon name="right"></v-icon></span>
         </div>
         <!-- 日期面板-->
-        <div class="date-group" v-show="panelType === 'date'">
+        <div class="date-group">
           <table>
             <thead>
             <tr>
@@ -160,22 +160,19 @@
           {label: '11月', value: 10},
           {label: '12月', value: 11}
         ], // 月
-        nowValue: 0, // 当前选中日期值
-        panelType: 'date' // 面板状态
+        nowValue: 0// 当前选中日期值
       }
     },
     mounted() {
-      // console.log(this.dateValue, 'date')
       if (this.value) {
-        // console.log(this.value, 'value')
         this.dateValue = this.formatDate(new Date(this.value).getTime())
       }
+      window.addEventListener('click', this.documentListener)
     },
     computed: {
       dateList() {
         //获取当月的天数
         let currentMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate()
-        // console.log(currentMonthLength, 'current对象')
         let dateList = Array.from({length: currentMonthLength}, (val, index) => {
             return {
               currentMonth: true,
@@ -186,7 +183,7 @@
         //获取当月1号的星期是为了确定1号前需要插多少天
         let startDay = new Date(this.tmpYear, this.tmpMonth, 1).getDay()
         //确认上个月一共多少天
-        let previousMongthLength = new Date(
+        let previousMonthLength = new Date(
           this.tmpYear,
           this.tmpMonth,
           0
@@ -194,7 +191,7 @@
         // 在1号前插入上个月日期
         for (let i = 0, len = startDay; i < len; i++) {
           dateList = [
-            {previousMonth: true, value: previousMongthLength - i}
+            {previousMonth: true, value: previousMonthLength - i}
           ].concat(dateList)
         }
         // 补全剩余位置,至少14天，则 i < 15
@@ -211,7 +208,6 @@
     methods: {
       openPanel() {
         this.panelState = !this.panelState
-        this.panelType = 'date'
       },
       selectDate(item) {
         // 赋值 当前 nowValue,用于控制样式突出显示当前月份日期
@@ -240,7 +236,7 @@
         this.panelState = !this.panelState
         this.$emit('input', selectDay)
       },
-// 日期格式方法
+      // 日期格式方法
       formatDate(date, fmt = this.format) {
         if (date === null || date === 'null') {
           return '--'
@@ -271,10 +267,9 @@
         }
         return fmt
       },
-// 确认是否为当前月份
+      // 确认是否为当前月份
       validateDate(item) {
         if (this.nowValue === item.value && item.currentMonth) {
-
           return true
         }
       },
@@ -291,7 +286,13 @@
           this.tmpMonth = 0
           this.tmpYear = this.tmpYear + 1
         }
+      },
+      documentListener() {
+        this.panelState = false
       }
+    },
+    destroyed() {
+      window.removeEventListener('click', this.documentListener)
     }
   }
 </script>
@@ -359,7 +360,6 @@
       }
 
       > .date-group {
-        border: 1px solid red;
         padding: 8px;
 
         > table {
@@ -367,7 +367,6 @@
           border-collapse: collapse;
 
           > .weekday {
-            border: 1px solid red;
             display: inline-block;
             font-size: 16px;
             padding: 0 8px;
@@ -376,7 +375,6 @@
           }
 
           > .date-list {
-            border: 1px solid red;
             list-style: none;
             text-align: left;
             overflow: hidden;
@@ -398,7 +396,8 @@
                 }
 
                 &.invalid {
-                  color: #22a6b3;
+                  color: #EA2027;
+                  background: #dff9fb;
                 }
 
                 &.preMonth, &.nextMonth {
