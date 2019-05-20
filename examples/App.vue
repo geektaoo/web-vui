@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <v-date-picker v-model="time"></v-date-picker>
-    <h1>我是拉拉小仙女</h1>
+    <v-upload></v-upload>
   </div>
 </template>
 
@@ -10,7 +9,6 @@
     name: 'app',
     data() {
       return {
-        time:new Date()
       }
     },
     mounted() {

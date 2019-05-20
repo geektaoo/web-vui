@@ -18,6 +18,7 @@ import Slides from '../packages/slides/index'
 import Menu from '../packages/menu/index'
 import Pagination from '../packages/pagination/index'
 import DatePicker from '../packages/datePicker/index'
+import upload from '../packages/upload/index'
 
 Vue.component('v-col', Col)
 Vue.component('v-row', Row)
@@ -36,6 +37,7 @@ Vue.use(Slides)
 Vue.use(Menu)
 Vue.use(Pagination)
 Vue.use(DatePicker)
+Vue.use(upload)
 
 new Vue({
   render: h => h(App)
