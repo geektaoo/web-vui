@@ -4,8 +4,11 @@
       <label for="upload-input"></label>
       <input id="upload-input" type="file" ref="input" @change="handleChange">
       <v-icon class="icon" name="upload" size="size-3x"></v-icon>
+      <div class="icon-close" v-show="status" @click="deleteImg">
+        <v-icon name="close" size="size-2x"></v-icon>
+      </div>
       <div class="img-box">
-        <img id="preview" src="" alt="">
+        <img id="preview" src="" alt="" ref="img">
       </div>
     </div>
     <v-button class="upload-btn" size="4x" @click="onUpload">上传</v-button>
@@ -19,8 +22,11 @@
   export default {
     name: 'vUpload',
     components: {vIcon, vButton},
+    props: {},
     data() {
-      return {}
+      return {
+        status: false
+      }
     },
     methods: {
       getFiles() {
@@ -39,6 +45,7 @@
         }
         fileReader.addEventListener('load', () => {
           preview.src = fileReader.result
+          this.status = true
         })
       },
       ajaxUpload(fileList) {
@@ -48,7 +55,7 @@
         let xhr = new XMLHttpRequest()
         xhr.open('post', 'http://localhost:3000/upload')
         xhr.onload = () => {
-          console.log("图片上传成功")
+          console.log('图片上传成功')
         }
         xhr.onerror = () => {
           console.log('error', '失败了')
@@ -59,6 +66,11 @@
         let fileList = this.getFiles()
         this.ajaxUpload(fileList)
       },
+      deleteImg() {
+        this.$refs.input.value = ''
+        this.$refs.img.src = ''
+        this.status = false
+      }
     }
   }
 </script>
@@ -96,6 +108,19 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+      }
+
+      .icon-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        fill: #fff;
+        z-index: 11;
+        cursor: pointer;
+
+        &:hover {
+          fill: #7efff5;
+        }
       }
 
       .img-box {
