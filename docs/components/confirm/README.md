@@ -1,4 +1,4 @@
-# confirm确认框
+# confirm 确认框
 
 confirm组件是以插件的形式引入的，它会在Vue.prototype中添加全局方法$confirm，你可以在Vue的实例中直接使用它。
 

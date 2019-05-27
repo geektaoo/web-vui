@@ -30,18 +30,19 @@ module.exports = {
         children:[
           '/components/icon/',
           '/components/button/',
-          '/components/cascader/',
-          '/components/collapse/',
-          '/components/confirm/',
           '/components/grid/',
           '/components/input/',
-          '/components/popover/',
-          '/components/tabs/',
+          '/components/confirm/',
           '/components/toast/',
+          '/components/popover/',
           '/components/pagination/',
+          '/components/cascader/',
+          '/components/collapse/',
+          '/components/tabs/',
           '/components/menu/',
           '/components/slides/',
-          '/components/datePicker/'
+          '/components/datePicker/',
+          '/components/upload/'
         ]
       }
     ]

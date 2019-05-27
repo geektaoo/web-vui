@@ -26,8 +26,7 @@
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
-    /*-moz-osx-font-smoothing: grayscale;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
+    width: 600px;
+    border: 1px solid red;
   }
 </style>
